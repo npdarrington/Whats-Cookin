@@ -1,0 +1,437 @@
+body {
+  background-color: #5B7894;
+  display: grid;
+  font-family: "Quicksand", sans-serif;
+  grid-template-columns: 1fr 5fr;
+  grid-template-areas:
+    "header header"
+    "image image"
+    "aside main";
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: auto;
+}
+
+h1 {
+  align-self: center;
+  color: white;
+  font-family: "Sulphur Point", sans-serif;
+  font-size: 50px;
+  margin: 0%;
+  padding: 0.5% 0.7% 0%;
+  width: 70%;
+}
+
+h2 {
+  color: #84C8A4;
+  margin: 10px 0px 10px 0px;
+}
+
+h3 {
+  color: #359567;
+  cursor: pointer;
+  height: 17%;
+  margin: 5px 5px 10px 0px;
+  transition: .8s ease;
+}
+
+h4 {
+  color: #359567;
+  background-color: #C4EB67;
+  border-radius: 3px;
+  margin: 10px 0px 0px 0px;
+  padding: 1px 4px 1px 4px;
+  width: max-content;
+}
+
+
+/* HEADER */
+header {
+  display: flex;
+  flex-direction: row;
+  grid-area: header;
+  padding: 0% 0%;
+  width: 100%;
+}
+
+span {
+  color: #C4EB67;
+  font-weight: 400;
+}
+
+.header-apple-icon {
+  height: 40px;
+  margin-left: 5px;
+  width: 35px;
+}
+
+#search {
+  border-radius: 15px 15px 15px 15px;
+  border: 3px outset #C4EB67;
+  box-shadow: 0px 0px 7px 0px #475d74;
+  display: flex;
+  flex-direction: row;
+  font-family: "Quicksand", sans-serif;
+  justify-content: center;
+  margin: 1.2% 0.5% 1.2% 0%;
+  width: 100%;
+}
+
+#search-input {
+  background-color: #b6dcca;
+  background: -webkit-gradient( linear,left top, left bottom, color-stop(0, rgb(255, 255, 255)), color-stop(1, rgb(225,225,225)));
+  border-radius: 10px 0px 0px 10px;
+  border: none;
+  box-shadow: inset -3px -1px 20px 1px #5c7894;
+  color: #5B7894;
+  font-family: "Quicksand", sans-serif;
+  font-size: 42px;
+  height: 100%;
+  outline: none;
+  padding: 0% 2% 0% 0%;
+  text-align: right;
+  transition: .8s ease;
+  width: 100%;
+}
+
+#search-input:hover {
+  box-shadow: inset 0px 0px 0px 0px white;
+  transition: .8s ease;
+}
+
+#search-input:focus {
+  box-shadow: inset 0px 0px 0px 0px white;
+}
+
+#search-input::placeholder {
+  color: #5B7894;
+  font-size: 20px;
+  text-align: right;
+  text-shadow: none;
+}
+
+#search-input:focus::placeholder {
+  font-size: 0px;
+  transition: .8s ease;
+}
+
+.search-label {
+  display: none;
+}
+
+.search-btn {
+  border-left: 3px outset #C4EB67;
+  border-radius: 0px 15px 15px 0px;
+  padding: 1%;
+}
+
+.nav-btn {
+  align-items: center;
+  background: #5B7894 no-repeat;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-size: 0px;
+  font-weight: 700;
+  justify-content: center;
+  margin: 0%;
+  outline: none;
+  overflow: hidden;
+  text-align: center;
+  transition: .4s ease;
+  width: 15%;
+}
+
+.nav-btn:hover {
+  color: #C4EB67;
+  font-size: 14px;
+  text-shadow: 0px 2px 4px black;
+  transition: .4s ease;
+}
+
+.nav-btn img {
+  max-height: 40px;
+  max-width: 40px;
+  padding: 2px 0px;
+}
+
+.saved-ingredients-btn {
+  border-left: 3px solid #C4EB67;
+}
+
+.ing-pan-btn {
+  margin: 1% 0%;
+  padding: 1px 6px 5px 0px;
+}
+
+
+/* BANNER IMAGE*/
+.banner-image {
+  background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),url("../images/green-apples.jpg");
+  grid-area: image;
+  height: 150px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.my-recipes-banner,
+.welcome-msg {
+  text-align: center;
+  width: 95%;
+}
+
+.my-recipes-banner h1,
+.welcome-msg h1 {
+  color: white;
+  width: 100%;
+}
+
+.my-recipes-banner {
+  display: none;
+  margin-top: 25px;
+}
+
+.welcome-msg {
+  margin-top: 50px;
+}
+
+
+/* FILTER SIDEBAR */
+aside {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  height: auto;
+  text-align: center;
+}
+
+.wrap {
+  background-color: white;
+  height: 100vh;
+  padding: 10px;
+  position: relative;
+  width: 200px;
+}
+
+ul {
+  list-style-type: none;
+  text-align: left;
+  padding-left: 35px;
+}
+
+li {
+  margin: 2px;
+}
+
+
+/* RECIPE CARD SECTION */
+main {
+  grid-area: main;
+  display: flex;
+  justify-content: center;
+  align-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.recipe-card {
+  background-color: white;
+  border: 2px solid #C4EB67;
+  border-radius: 7px;
+  cursor: pointer;
+  height: 270px;
+  margin: 20px;
+  padding: 15px;
+  width: 250px;
+}
+
+.recipe-card:hover .card-photo-preview {
+  opacity: 50%;
+  transition: .8s ease;
+}
+
+.recipe-card:hover .text {
+  font-size: 20px;
+  opacity: 100%;
+  transition: .5s ease;
+  width: 100%;
+}
+
+.recipe-card:hover h3 {
+  text-shadow: 0px 0px 4px #C4EB67;
+  transition: .8s ease;
+}
+
+.card-apple-icon {
+  cursor: pointer;
+  float: right;
+  height: 50px;
+  padding-bottom: 10px;
+  width: 45px;
+}
+
+.card-photo-preview {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 7px;
+  cursor: pointer;
+  height: 130px;
+  transition: .8s ease;
+  width: 100%;
+}
+
+.card-photo-container {
+  align-items: center;
+  display: flex;
+  height: 130px;
+  justify-content: center;
+  position: relative;
+}
+
+.text {
+  background: #359567;
+  color: white;
+  font-weight: 700;
+  font-size: 0px;
+  opacity: 0%;
+  padding: 0%;
+  position: absolute;
+  text-align: center;
+  width: 0%;
+  transition: .5s ease;
+}
+
+
+/* BUTTONS */
+.show-pantry-recipes-btn,
+.show-all-btn,
+.filter-btn {
+  background-color: #359567;
+  border: 0;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  font-family: "Quicksand", sans-serif;
+  font-size: 12pt;
+  font-weight: bold;
+  padding: 5px 10px 5px 10px;
+}
+
+.show-pantry-recipes-btn {
+  margin-top: 10px;
+}
+
+.show-all-btn {
+  height: 40px;
+  margin-top: 20px;
+  width: 200px;
+}
+
+.filter-btn:hover {
+  background-color: #84C8A4;
+}
+
+
+/* PANTRY LIST */
+.drop-menu {
+  align-items: center;
+  background-color: #DAE4EE;
+  display: none;
+  height: 600px;
+  margin-left: 81%;
+  margin-top: 92px;
+  overflow: scroll;
+  padding: 12px;
+  position: absolute;
+  text-align: center;
+  width: 250px;
+  z-index: 3;
+}
+
+.drop-menu h2 {
+  color: #359567;
+  margin: 0px;
+}
+
+.pantry-list {
+  color: #000000;
+  padding-left: 15px;
+  text-align: left;
+}
+
+
+/* RECIPE INSTRUCTIONS */
+.recipe-instructions {
+  background: white;
+  border: 3px solid #C4EB67;
+  border-radius: 10px;
+  box-shadow: 1px 1px 115px black;
+  display: none;
+  height: 70%;
+  margin: 0;
+  overflow-x: scroll;
+  padding: 1% 1% 1% 1%;
+  position: fixed;
+  right: 15%;
+  top: 15%;
+  width: 70%;
+  z-index: 1000;
+}
+
+#exit-recipe-btn {
+  background: white;
+  border: 2px double #359567;
+  border-radius: 5px;
+  color: #359567;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  margin: -4% -3% 2% -1%;
+  position: fixed;
+  transition: .3s ease;
+}
+
+#exit-recipe-btn:hover {
+  background: #C4EB67;
+  transition: .3s ease;
+}
+
+#recipe-title {
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 7px 7px 0px 0px;
+  color: white;
+  font-size: 30px;
+  margin: 0;
+  padding: 5%;
+  text-align: center;
+  text-shadow: 0px 0px 6px black;
+}
+
+.recipe-instructions h4 {
+  background: white;
+  color: #359567;
+}
+
+.recipe-instructions p {
+  margin-left: 2%;
+}
+
+.recipe-instructions ol {
+  margin-right: 2%;
+}
+
+#overlay {
+  filter:alpha(opacity=50);
+  background-color: #5B7894;
+  height:100%;
+  left:0;
+  opacity:0.5;
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:100;
+}

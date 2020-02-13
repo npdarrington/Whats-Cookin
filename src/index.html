@@ -1,13 +1,50 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en" dir="ltr">
   <head>
-    <title>Webpack Starter Kit</title>
+    <meta charset="utf-8">
+    <title>Fresh Picks</title>
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sulphur+Point:400,700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../images/apple-logo.png" />
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
-
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+    <header>
+      <h1><span>fresh</span>Picks<img src="../images/apple-logo.png" alt="apple icon" class="header-apple-icon"></h1>
+      <form id="search" role="search">
+        <input id="search-input" type="text" autocomplete="off" placeholder="Search Recipes..."></input>
+        <label for="search-input" class="search-label">Search</label>
+        <button class="nav-btn search-btn" type="button" name="button"><img src="../images/search.png" alt="search button"></button>
+      </form>
+      <button class="nav-btn ing-pan-btn saved-recipes-btn" type="button" name="button"><img src="../images/cookbook.png" alt="search button">My Recipes</button>
+      <button class="nav-btn my-pantry-btn ing-pan-btn saved-ingredients-btn" type="button" name="button"><img src="../images/seasoning.png" alt="search button">My Pantry</button>
+    </header>
+    <section class="banner-image">
+      <div class="my-recipes-banner">
+        <h1>My Recipes</h1>
+        <button class="show-all-btn">Show All Recipes</button>
+      </div>
+    </section>
+    <div class="drop-menu">
+      <h2>My Pantry</h2>
+      <button class="show-pantry-recipes-btn">What Can I Make?</button>
+      <ul class="pantry-list"></ul>
+    </div>
+    <aside>
+      <div class="wrap">
+        <h2>Recipe Type</h2>
+        <ul class="tag-list">
+        </ul>
+        <button class="filter-btn">Filter Recipes</button>
+      </div>
+    </aside>
+    <main>
+      <div class="recipe-instructions">
+      </div>
+      <div class="my-recipes-banner">
+        <h1>My Recipes</h1>
+        <button class="show-all-btn">Show All Recipes</button>
+      </div>
+    </main>
   </body>
 </html>
