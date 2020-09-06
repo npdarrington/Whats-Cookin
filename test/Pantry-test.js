@@ -1,14 +1,16 @@
 import { expect } from 'chai';
 import Pantry from '../src/Pantry.js';
 
-describe.only('Pantry', function() {
+describe.only('Pantry', () => {
   let pantry;
+  let user;
 
-  beforeEach(function() {
+  beforeEach(() => {
     pantry = new Pantry();
+    user = new User(user);
   });
 
-  it('should be a function', function() {
+  it('should be a function', () => {
     expect(Pantry).to.be.a('function');
   });
 });
