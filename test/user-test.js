@@ -62,14 +62,24 @@ describe('User', function() {
     expect(user.filterRecipes('recipesToCook', 'american')).to.deep.equal([recipe2]);
   });
 
-  it('should be able to search recipes by name', function() {
+  it('should be able to search recipes by name in favorites', function() {
     user.saveRecipe(recipe);
-    expect(user.searchForRecipe('Chicken Parm')).to.deep.equal([recipe]);
+    expect(user.searchForRecipe('favoriteRecipes', 'Chicken Parm')).to.deep.equal([recipe]);
   });
 
-  it('should be able to search recipes by ingredient', function() {
+  it('should be able to search recipes by ingredient in favorites', function() {
     user.saveRecipe(recipe2);
-    expect(user.searchForRecipe('chicken wing')).to.deep.equal([recipe2]);
+    expect(user.searchForRecipe('favoriteRecipes', 'chicken wing')).to.deep.equal([recipe2]);
+  });
+
+  it('should be able to search recipes by name in recipes to cook', function() {
+    user.decideToCook(recipe);
+    expect(user.searchForRecipe('recipesToCook', 'Chicken Parm')).to.deep.equal([recipe]);
+  });
+
+  it('should be able to search recipes by ingredient in recipes to cook', function() {
+    user.decideToCook(recipe2);
+    expect(user.searchForRecipe('recipesToCook', 'chicken wing')).to.deep.equal([recipe2]);
   });
 
   it('should be able to remove recipe from favorites', () => {
