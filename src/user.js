@@ -20,8 +20,8 @@ class User {
     this.recipesToCook.push(recipe);
   }
 
-  filterRecipes(type) {
-    return this.favoriteRecipes.filter(recipe => recipe.type.includes(type));
+  filterRecipes(recipeLocation, type) {
+    return this[recipeLocation].filter(recipe => recipe.type.includes(type));
   }
 
   searchForRecipe(keyword) {
