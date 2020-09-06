@@ -11,6 +11,9 @@ class Recipe {
     //   ingredientData.find(ingredient => ingredient === i);
     // });
   }
+  retrieveCookingInstructions() {
+    
+  }
 }
 
 module.exports = Recipe;
