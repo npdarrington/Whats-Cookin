@@ -10,7 +10,7 @@ describe('User', function() {
 
   beforeEach(function() {
     userInfo = data.filter(user => user.id === 1);
-    user = new User(userInfo)
+    user = new User(userInfo[0])
 
     recipe = {name: 'Chicken Parm', type: ['italian', 'dinner']};
   });
@@ -20,15 +20,15 @@ describe('User', function() {
   });
 
   it('should initialize with an id', function() {
-    expect(user.id).to.eq(1);
+    expect(user.id).to.equal(1);
   });
 
   it('should initialize with a name', function() {
-    expect(user.name).to.eq('Saige O\'Kon');
+    expect(user.name).to.equal('Saige O\'Kon');
   });
 
   it('should initialize with a pantry', function() {
-    expect(user.pantry[0].ingredient).to.eq(11477);
+    expect(user.pantry[0].ingredient).to.equal(11477);
   });
 
   it('should initialize with an empty favoriteRecipes array', function() {
