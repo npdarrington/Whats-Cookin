@@ -57,7 +57,7 @@ describe('User', function() {
     expect(user.filterRecipes('favoriteRecipes', 'italian')).to.deep.equal([recipe]);
   });
 
-  it('should be able to filter recipes by type in in recipes to cook', function() {
+  it('should be able to filter recipes by type in recipes to cook', function() {
     user.decideToCook(recipe2);
     expect(user.filterRecipes('recipesToCook', 'american')).to.deep.equal([recipe2]);
   });
