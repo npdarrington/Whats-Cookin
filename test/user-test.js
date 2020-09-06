@@ -7,12 +7,14 @@ describe('User', function() {
   let user;
   let userInfo;
   let recipe;
+  let recipe2;
 
   beforeEach(function() {
     userInfo = data.filter(user => user.id === 1);
     user = new User(userInfo[0])
 
     recipe = {name: 'Chicken Parm', type: ['italian', 'dinner']};
+    recipe2 = { name: 'Buffalo Wings', type: ['american', 'lunch'] };
   });
 
   it('should be a function', function() {
@@ -51,6 +53,7 @@ describe('User', function() {
 
   it('should be able to filter recipes by type', function() {
     user.saveRecipe(recipe);
+    user.saveRecipe(recipe2);
     expect(user.filterRecipes('italian')).to.deep.equal([recipe]);
   });
 
