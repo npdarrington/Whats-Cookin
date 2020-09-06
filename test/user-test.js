@@ -65,6 +65,12 @@ describe('User', function() {
   it('should be able to remove recipe from favorites', () => {
     user.saveRecipe(recipe);
     user.saveRecipe(recipe2);
-    expect(user.removeRecipe(recipe)).to.deep.equal(user.favoriteRecipes[recipe2]);
+    expect(user.removeRecipe('favoriteRecipes', recipe)).to.deep.equal(user.favoriteRecipes[recipe2]);
+  });
+
+  it('should be able to remove recipe from recipes to cook', () => {
+    user.decideToCook(recipe);
+    user.decideToCook(recipe2);
+    expect(user.removeRecipe('recipesToCook', recipe2)).to.deep.equal(user.recipesToCook[recipe]);
   });
 });
