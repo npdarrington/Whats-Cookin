@@ -61,4 +61,10 @@ describe('User', function() {
     user.saveRecipe(recipe);
     expect(user.searchForRecipe('Chicken Parm')).to.deep.equal([recipe]);
   });
+
+  it('should be able to remove recipe from favorites', () => {
+    user.saveRecipe(recipe);
+    user.saveRecipe(recipe2);
+    expect(user.removeRecipe(recipe)).to.deep.equal(user.favoriteRecipes[recipe2]);
+  });
 });
