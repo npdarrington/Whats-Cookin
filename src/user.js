@@ -24,8 +24,8 @@ class User {
     return this[recipeLocation].filter(recipe => recipe.type.includes(type));
   }
 
-  searchForRecipe(keyword) {
-    return this.favoriteRecipes.filter(recipe => recipe.name.includes(keyword) || recipe.ingredients.includes(keyword));
+  searchForRecipe(recipeLocation, keyword) {
+    return this[recipeLocation].filter(recipe => recipe.name.includes(keyword) || recipe.ingredients.includes(keyword));
   }
 }
 
