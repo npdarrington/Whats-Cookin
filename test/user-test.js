@@ -9,7 +9,7 @@ describe('User', function() {
   let recipe;
 
   beforeEach(function() {
-    userInfo = data.users[0];
+    userInfo = data.filter(user => user.id === 1);
     user = new User(userInfo)
 
     recipe = {name: 'Chicken Parm', type: ['italian', 'dinner']};
