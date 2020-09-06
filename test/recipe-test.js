@@ -8,9 +8,10 @@ describe('Recipe', function() {
   let recipeInfo;
 
   beforeEach(function() {
-    console.log(data)
-    recipeInfo = data.recipeData[0];
-    recipe = new Recipe(recipeInfo);
+    recipeInfo = data.filter(recipe => {
+      return recipe.id === 595736
+    });
+    recipe = new Recipe(recipeInfo[0]);
   })
 
   it('is a function', function() {
