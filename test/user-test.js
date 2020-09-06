@@ -11,10 +11,10 @@ describe('User', function() {
 
   beforeEach(function() {
     userInfo = data.filter(user => user.id === 1);
-    user = new User(userInfo[0])
+    user = new User(userInfo[0]);
 
-    recipe = {name: 'Chicken Parm', type: ['italian', 'dinner']};
-    recipe2 = { name: 'Buffalo Wings', type: ['american', 'lunch'] };
+    recipe = {name: 'Chicken Parm', type: ['italian', 'dinner'], ingredients: ['dry breadcrumbs', 'boneless skinless chicken breasts', 'parmesan cheese', 'marinara sauce']};
+    recipe2 = { name: 'Buffalo Wings', type: ['american', 'lunch'], ingredients: ['chicken wing', 'red chili powder', 'tabasco sauce'] };
   });
 
   it('should be a function', function() {
@@ -60,6 +60,11 @@ describe('User', function() {
   it('should be able to search recipes by name', function() {
     user.saveRecipe(recipe);
     expect(user.searchForRecipe('Chicken Parm')).to.deep.equal([recipe]);
+  });
+
+  it('should be able to search recipes by ingredient', function() {
+    user.saveRecipe(recipe2);
+    expect(user.searchForRecipe('chicken wing')).to.deep.equal([recipe2]);
   });
 
   it('should be able to remove recipe from favorites', () => {
