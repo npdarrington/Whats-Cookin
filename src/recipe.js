@@ -6,17 +6,21 @@ class Recipe {
     this.tags = recipe.tags;
     this.ingredients = recipe.ingredients;
   }
-  calculateIngredientsCost() {
+  calculateIngredientsCost(ingredientData) {
     //find each ingredient in the ingredient-data.js file
     //for each ingredient, add that multiply the amount required by its
     //unit cost set that to a variable subtotal
     //for each subtotal, add it to the accumulator.
 
-     this.ingredients.map(id => {
-      ingredientData.find(ingredient => ingredient.id === id)
-      ;
-    ;
-  }
+
+    let recipeIngredients = this.ingredients.map(id => {
+      console.log(id)
+    return ingredientData.find(ingredient => ingredient.id === id.id);
+    });
+    console.log(recipeIngredients)
+
+
+    }
   retrieveCookingInstructions() {
 
   }
