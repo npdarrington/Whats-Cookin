@@ -1,14 +1,15 @@
 import { expect } from 'chai';
 
 import Recipe from '../src/recipe';
-import data from '../src/data/recipe-data';
+import recipeData from '../src/data/recipe-data';
+import ingredientData from '../src/data/ingredient-data'
 
 describe('Recipe', function() {
   let recipe;
   let recipeInfo;
 
   beforeEach(function() {
-    recipeInfo = data.filter(recipe => {
+    recipeInfo = recipeData.filter(recipe => {
       return recipe.id === 595736
     });
     recipe = new Recipe(recipeInfo[0]);

@@ -7,12 +7,18 @@ class Recipe {
     this.ingredients = recipe.ingredients;
   }
   calculateIngredientsCost() {
-    // return this.ingredients.map(i => {
-    //   ingredientData.find(ingredient => ingredient === i);
-    // });
+    //find each ingredient in the ingredient-data.js file
+    //for each ingredient, add that multiply the amount required by its
+    //unit cost set that to a variable subtotal
+    //for each subtotal, add it to the accumulator.
+
+     this.ingredients.map(id => {
+      ingredientData.find(ingredient => ingredient.id === id)
+      ;
+    ;
   }
   retrieveCookingInstructions() {
-    
+
   }
 }
 
