@@ -4,7 +4,7 @@ class Recipe {
     this.name = recipe.name;
     this.image = recipe.image;
     this.tags = recipe.tags;
-    this.instructions = recipe.instructions
+    this.instructions = recipe.instructions;
     this.ingredients = recipe.ingredients;
   }
   calculateIngredientsCost(ingredientData){
@@ -22,9 +22,24 @@ class Recipe {
     return +(total/100).toFixed(2)
   }
   retrieveCookingInstructions() {
-    console.log(this.instructions)
     return this.instructions
   }
+  findRecipeByTag(tag){
+    const result = ingredientData.filter(recipe => {
+    })
+  }
+  findRecipeByIngredients(recipeData, x){
+    const result = recipeData.filter(recipe => {
+      //compare ingredient name to x 
+      recipe.ingredients.forEach(ingredient => {
+        console.log(ingredient.name)
+      })
+      return recipe.ingredients.name.includes(x)
+    })
+    console.log(result)
+    return result
+  }
 }
+
 
 module.exports = Recipe;

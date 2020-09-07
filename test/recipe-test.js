@@ -49,4 +49,7 @@ describe('Recipe', function() {
   it('should provide the user with all the instructions to make the recipe', () => {
     expect(recipe.retrieveCookingInstructions()).to.deep.equal(recipe.instructions)
   })
+  it('should provide a list of recipes which contain a specified ingredient', () => {
+    expect(recipe.findRecipeByIngredients(recipeData, 'egg')).to.deep.equal([recipe])
+  })
 });
