@@ -12,13 +12,21 @@ class Recipe {
     //unit cost set that to a variable subtotal
     //for each subtotal, add it to the accumulator.
 
-
     let recipeIngredients = this.ingredients.map(id => {
-      console.log(id)
     return ingredientData.find(ingredient => ingredient.id === id.id);
     });
     console.log(recipeIngredients)
+    console.log(this.ingredients)
 
+  let total = 0
+  recipeIngredients.reduce((price, currVal) => {
+    let recipeQuantity = this.ingredients.find(ingredient => {
+    return ingredient.id === currVal.id
+  }).quantity.amount
+   price = currVal.estimatedCostInCents * recipeQuantity
+  return (total += price)
+  }, 0)
+  return +(total/100).toFixed(2)
 
     }
   retrieveCookingInstructions() {
