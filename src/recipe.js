@@ -29,12 +29,13 @@ class Recipe {
     })
   }
   findRecipeByIngredients(recipeData, x){
-    const result = recipeData.filter(recipe => {
-      //compare ingredient name to x 
-      recipe.ingredients.forEach(ingredient => {
-        console.log(ingredient.name)
+    const result = []
+    recipeData.forEach(recipe => {
+        recipe.ingredients.forEach(ingredient => {
+          if(ingredient.name === x){
+            result.push(recipe)
+          }
       })
-      return recipe.ingredients.name.includes(x)
     })
     console.log(result)
     return result
