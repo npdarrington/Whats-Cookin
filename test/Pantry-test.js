@@ -12,10 +12,14 @@ describe.only('Pantry', () => {
 
   beforeEach(() => {
     pantry = new Pantry();
-    user = new User(user);
+    user = new User(users[0]);
   });
 
   it('should be a function', () => {
     expect(Pantry).to.be.a('function');
+  });
+
+  it('should show the ingredients in a user\'s pantry', () => {
+  expect(pantry.getPantryItems(user)).to.deep.equal(user.pantry);
   });
 });
