@@ -6,13 +6,9 @@ import ingredientData from '../src/data/ingredient-data'
 
 describe('Recipe', function() {
   let recipe;
-  let recipeInfo;
 
   beforeEach(function() {
-    recipeInfo = recipeData.filter(recipe => {
-      return recipe.id === 595736
-    });
-    recipe = new Recipe(recipeInfo[0]);
+    recipe = new Recipe(recipeData[0]);
   })
 
   it('is a function', function() {
@@ -50,4 +46,7 @@ describe('Recipe', function() {
   it('should calculate the total cost of all of the ingredients', function() {
     expect(recipe.calculateIngredientsCost(ingredientData)).to.equal(177.76);
   });
+  it('should provide the user with all the instructions to make the recipe', () => {
+    expect(recipe.retrieveCookingInstructions()).to.deep.equal(recipe.instructions)
+  })
 });

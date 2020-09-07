@@ -4,33 +4,26 @@ class Recipe {
     this.name = recipe.name;
     this.image = recipe.image;
     this.tags = recipe.tags;
+    this.instructions = recipe.instructions
     this.ingredients = recipe.ingredients;
   }
-  calculateIngredientsCost(ingredientData) {
-    //find each ingredient in the ingredient-data.js file
-    //for each ingredient, add that multiply the amount required by its
-    //unit cost set that to a variable subtotal
-    //for each subtotal, add it to the accumulator.
-
+  calculateIngredientsCost(ingredientData){
     let recipeIngredients = this.ingredients.map(id => {
-    return ingredientData.find(ingredient => ingredient.id === id.id);
+      return ingredientData.find(ingredient => ingredient.id === id.id);
     });
-    console.log(recipeIngredients)
-    console.log(this.ingredients)
-
-  let total = 0
-  recipeIngredients.reduce((price, currVal) => {
-    let recipeQuantity = this.ingredients.find(ingredient => {
-    return ingredient.id === currVal.id
-  }).quantity.amount
-   price = currVal.estimatedCostInCents * recipeQuantity
-  return (total += price)
-  }, 0)
-  return +(total/100).toFixed(2)
-
-    }
+    let total = 0
+    recipeIngredients.reduce((price, currVal) => {
+      let recipeQuantity = this.ingredients.find(ingredient => {
+        return ingredient.id === currVal.id
+      }).quantity.amount
+      price = currVal.estimatedCostInCents * recipeQuantity
+      return (total += price)
+    }, 0)
+    return +(total/100).toFixed(2)
+  }
   retrieveCookingInstructions() {
-
+    console.log(this.instructions)
+    return this.instructions
   }
 }
 
