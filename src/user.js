@@ -6,23 +6,26 @@ class User {
     this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
+
   saveRecipe(recipe) {
     this.favoriteRecipes.push(recipe);
   }
 
-  removeRecipe(recipe) {
-    let i = this.favoriteRecipes.indexOf(recipe);
-    this.favoriteRecipes.splice(i, 1);
+  removeRecipe(recipeLocation, recipe) {
+    let recipeIndex = this[recipeLocation].indexOf(recipe);
+    this[recipeLocation].splice(recipeIndex, 1);
   }
 
   decideToCook(recipe) {
     this.recipesToCook.push(recipe);
   }
-  filterRecipes(type) {
-    return this.favoriteRecipes.filter(recipe => recipe.type.includes(type));
+
+  filterRecipes(recipeLocation, type) {
+    return this[recipeLocation].filter(recipe => recipe.type.includes(type));
   }
-  searchForRecipe(keyword) {
-    return this.favoriteRecipes.filter(recipe => recipe.name.includes(keyword) || recipe.ingredients.includes(keyword));
+
+  searchForRecipe(recipeLocation, keyword) {
+    return this[recipeLocation].filter(recipe => recipe.name.includes(keyword) || recipe.ingredients.includes(keyword));
   }
 }
 
