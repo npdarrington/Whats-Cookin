@@ -22,4 +22,11 @@ describe.only('Pantry', () => {
   it('should show the ingredients in a user\'s pantry', () => {
   expect(pantry.getPantryItems(user)).to.deep.equal(user.pantry);
   });
+
+  it('should show a user missing ingredients to cook a meal', () => {
+    const recipe = recipeData[0].ingredients;
+    const missingIngredients = []
+
+    expect(pantry.getMissingIngredients(user, recipe)).to.deep.equal([recipe[7], recipe[8]]);
+  })
 });
