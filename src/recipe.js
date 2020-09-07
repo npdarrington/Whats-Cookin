@@ -24,21 +24,23 @@ class Recipe {
   retrieveCookingInstructions() {
     return this.instructions
   }
-  findRecipeByTag(tag){
-    const result = ingredientData.filter(recipe => {
-    })
+  findRecipeByTag(recipeData, selectedTag){
+    return recipeData.reduce((foundRecipes, recipe) => {
+      if(recipe.tags.includes(selectedTag)){
+        foundRecipes.push(recipe)
+      }
+      return foundRecipes
+    }, [])
   }
-  findRecipeByIngredients(recipeData, x){
-    const result = []
-    recipeData.forEach(recipe => {
-        recipe.ingredients.forEach(ingredient => {
-          if(ingredient.name === x){
-            result.push(recipe)
-          }
+  findRecipeByIngredients(recipeData, selectedIngredient){
+    return recipeData.reduce((foundRecipes, recipe) => {
+      recipe.ingredients.forEach(ingredient => {
+      if(ingredient.name === selectedIngredient){
+        foundRecipes.push(recipe)
+      }
       })
-    })
-    console.log(result)
-    return result
+      return foundRecipes
+    }, [])
   }
 }
 
