@@ -45,7 +45,11 @@ class User {
     const pantry = Object.entries(marieKondoPantry).map(ingredient => {
       return { ingredient: ingredient[0], amount: ingredient[1] }
     })
-    return pantry
+  
+    // const pantry = Object.keys(marieKondoPantry).map(ingredient => {
+    //   return { ingredient: ingredient, amount: marieKondoPantry[ingredient] }
+    // })
+    this.pantry = pantry
   }
 
 }

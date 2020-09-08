@@ -24,7 +24,7 @@ let recipeData = [
         "name": "egg",
         "id": 1123,
         "quantity": {
-          "amount": 1,
+          "amount": 100,
           "unit": "large"
         }
       },

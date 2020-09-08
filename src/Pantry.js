@@ -3,54 +3,47 @@ class Pantry {
     this.userPantry = userPantry;
   }
   getPantryItems(user) {
+    user.consolidatePantry()
     return user.pantry;
   }
-  getRecipeIngredientsInStock(user, recipeData) {
+  getRecipeIngredientsInStock(user, recipeIngredients) {
     const userPantry = this.getPantryItems(user)
-    const stockedIngredients = recipeData.reduce((ingredientsInStock, ingredient) => {
+    const stockedIngredients = recipeIngredients.reduce((ingredientsInStock, ingredient) => {
       userPantry.forEach(item => {
-        if (!ingredientsInStock.includes(ingredient) && item.ingredient === ingredient.id) {
+        console.log(item.amount, ingredient.quantity.amount)
+        if (!ingredientsInStock.includes(ingredient) && +item.ingredient === ingredient.id && item.amount >= ingredient.quantity.amount) {
+          ingredient.quantity.amount - item.amount
           ingredientsInStock.push(ingredient)
         }
       })
       return ingredientsInStock;
     }, [])
+    console.log('stocked', stockedIngredients, stockedIngredients.length)
+    // console.log('user pantry', userPantry)
     return stockedIngredients;
+
+   // check if user.pantry amount is less than amount in recipeIngredients ingredient 
+   // 
   }
 
-  getMissingIngredients(user, recipeData) {
-    const stockedItems = this.getRecipeIngredientsInStock(user, recipeData);
-    const missingIngredients = recipeData.reduce((missingIngred, ingredient) => {
+  getMissingIngredients(user, recipeIngredients) {
+    const stockedItems = this.getRecipeIngredientsInStock(user, recipeIngredients);
+    const missingIngredients = recipeIngredients.reduce((missingIngred, ingredient) => {
       let ingredientNotFound = stockedItems.find(item => {
         return item.id === ingredient.id;
       })
       if (!ingredientNotFound) {
         missingIngred.push(ingredient)
       }
+      // console.log('HERE', missingIngred)
       return missingIngred
     }, [])
-    console.log(missingIngredients)
+    // console.log('missing', missingIngredients)
     return missingIngredients
   }
 
-  // findPantryInfo() {
-  //   user.pantry.forEach(item => {
-  //     let itemInfo = ingredientsData.find(ingredient => {
-  //       return ingredient.id === item.ingredient;
-  //     });
-  //     let originalIngredient = pantryInfo.find(ingredient => {
-  //       if (itemInfo) {
-  //         return ingredient.name === itemInfo.name;
-  //       }
-  //     });
-  //     if (itemInfo && originalIngredient) {
-  //       originalIngredient.count += item.amount;
-  //     } else if (itemInfo) {
-  //       pantryInfo.push({name: itemInfo.name, count: item.amount});
-  //     }
-  //   });
-  //   displayPantryInfo(pantryInfo.sort((a, b) => a.name.localeCompare(b.name)));
-  // }
+    // recipe ingredient amount - pantry ingredient amount (more looping fun oh joy)
+  
 }
 
 
