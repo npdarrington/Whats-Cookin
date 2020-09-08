@@ -93,4 +93,8 @@ describe('User', () => {
     user.decideToCook(recipe2);
     expect(user.removeRecipe('recipesToCook', recipe2)).to.deep.equal(user.recipesToCook[recipe]);
   });
+
+  it('should be able to consolidate ingredients with the same id in pantry', () => {
+    expect(user.consolidatePantry()[0]).to.deep.equal({ ingredient: '1001', amount: 18 })
+  })
 });
