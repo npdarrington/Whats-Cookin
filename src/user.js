@@ -27,6 +27,31 @@ class User {
   searchForRecipe(recipeLocation, keyword) {
     return this[recipeLocation].filter(recipe => recipe.name.includes(keyword) || recipe.ingredients.includes(keyword));
   }
+
+  marieKondoMyPantry() {
+    const marieKondoPantry = this.pantry.reduce((konmariPantry, item) => {
+      if(!konmariPantry[item.ingredient]) {
+        konmariPantry[item.ingredient] = item.amount
+      } else {
+        konmariPantry[item.ingredient] += item.amount
+      }
+      return konmariPantry
+    }, {})
+    return marieKondoPantry
+  }
+
+  consolidatePantry() {
+    const marieKondoPantry = this.marieKondoMyPantry()
+    const pantry = Object.entries(marieKondoPantry).map(ingredient => {
+      return { ingredient: ingredient[0], amount: ingredient[1] }
+    })
+  
+    // const pantry = Object.keys(marieKondoPantry).map(ingredient => {
+    //   return { ingredient: ingredient, amount: marieKondoPantry[ingredient] }
+    // })
+    this.pantry = pantry
+  }
+
 }
 
 module.exports = User;
