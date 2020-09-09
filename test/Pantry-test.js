@@ -25,12 +25,12 @@ describe('Pantry', () => {
 
   it('should show a user missing ingredients to cook a meal', () => {
     const recipe = recipeData[0].ingredients;
-    expect(pantry.getMissingIngredients(user, recipe)).to.deep.equal([recipe[7], recipe[8]]);
+    expect(pantry.getMissingIngredients(user, recipe)).to.deep.equal([recipe[2], recipe[7], recipe[8]]);
   })
 
   it('should show a user how many of each missing ingredients are needed for a given recipe', () => {
     const recipe = recipeData[0].ingredients;
-    // call user.mariekondo before finding missing ingredients
-    expect(pantry.getNumberOfMissingIngredients(user, recipe)).to.deep.equal([]);
+    const missingQuantity = pantry.getMissingQuantity(user, recipe)
+    expect(missingQuantity[0].quantity.amount).to.equal(74);
   })
 });

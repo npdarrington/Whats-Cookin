@@ -10,16 +10,12 @@ class Pantry {
     const userPantry = this.getPantryItems(user)
     const stockedIngredients = recipeIngredients.reduce((ingredientsInStock, ingredient) => {
       userPantry.forEach(item => {
-        console.log(item.amount, ingredient.quantity.amount)
         if (!ingredientsInStock.includes(ingredient) && +item.ingredient === ingredient.id && item.amount >= ingredient.quantity.amount) {
-          ingredient.quantity.amount - item.amount
-          ingredientsInStock.push(ingredient)
+          ingredientsInStock.push(item)
         }
       })
       return ingredientsInStock;
     }, [])
-    console.log('stocked', stockedIngredients, stockedIngredients.length)
-    // console.log('user pantry', userPantry)
     return stockedIngredients;
 
    // check if user.pantry amount is less than amount in recipeIngredients ingredient 
@@ -30,20 +26,47 @@ class Pantry {
     const stockedItems = this.getRecipeIngredientsInStock(user, recipeIngredients);
     const missingIngredients = recipeIngredients.reduce((missingIngred, ingredient) => {
       let ingredientNotFound = stockedItems.find(item => {
-        return item.id === ingredient.id;
+        return +item['ingredient'] === ingredient.id;
       })
       if (!ingredientNotFound) {
         missingIngred.push(ingredient)
       }
-      // console.log('HERE', missingIngred)
       return missingIngred
     }, [])
-    // console.log('missing', missingIngredients)
     return missingIngredients
   }
 
-    // recipe ingredient amount - pantry ingredient amount (more looping fun oh joy)
+  getMissingQuantity(user, recipeIngredients) {
+    const missingIngredients = this.getMissingIngredients(user, recipeIngredients)
+    const missingQuantities = missingIngredients.map(ingredient => { 
+      user.pantry.forEach(item => {
+        if (ingredient.id === +item.ingredient) {
+          ingredient.quantity.amount -= item.amount
+        }
+      })
+      return ingredient
+    })
+    console.log(missingQuantities)
+    return missingQuantities
+  }
+  // if ingredient doesn't exist in pantry (by iterating and looking for ID) => then return ingredient.amount
+  // if it does match, subtract: recipe.quantity.amount - pantry item.amount  = how many more needed
+  // recipe ingredient amount - pantry ingredient amount (more looping fun oh joy)
   
+  // let insufficientQuantities = stockedItems.filter(item => {
+  //   console.log(item, ingredient.quantity.amount)
+  //   return (item.amount - ingredient.quantity.amount) < 0
+  // }) 
+  // console.log('xxxx', insufficientQuantities)
+
+  // reduce((missingAmounts, item) => {
+  //   if (!missingAmounts[ingredient.name] && +item.ingredient === +ingredient.id) {
+  //     missingAmounts[ingredient.name] = ingredient.quantity.amount - item.amount
+  //   } else if (!ingredient.id) {
+  //     missingAmounts[ingredient.name] = ingredient.quantity.amount
+  //   }
+  //   return missingAmounts
+  // }, {})
 }
 
 
