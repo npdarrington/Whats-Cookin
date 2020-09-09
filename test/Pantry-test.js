@@ -2,6 +2,7 @@ import { expect } from 'chai';
 
 import users from '../src/data/users-data.js'
 import recipeData from '../src/data/recipe-data.js'
+import ingredientData from '../src/data/ingredient-data.js'
 import User from '../src/user.js';
 import Pantry from '../src/Pantry.js';
 import Recipe from '../src/recipe.js';
@@ -26,11 +27,17 @@ describe('Pantry', () => {
   it('should show a user missing ingredients to cook a meal', () => {
     const recipe = recipeData[0].ingredients;
     expect(pantry.getMissingIngredients(user, recipe)).to.deep.equal([recipe[2], recipe[7], recipe[8]]);
-  })
+  });
 
   it('should show a user how many of each missing ingredients are needed for a given recipe', () => {
     const recipe = recipeData[0].ingredients;
-    const missingQuantity = pantry.getMissingQuantity(user, recipe)
+    const missingQuantity = pantry.getMissingQuantity(user, recipe);
     expect(missingQuantity[0].quantity.amount).to.equal(74);
-  })
+  });
+
+  it('should show a user the total cost of the missing ingredients needed for a given recipe', () => {
+    const recipe = recipeData[0].ingredients;
+    const missingIngredients = pantry.getMissingIngredients(user, recipe);
+    expect(pantry.calculateMissingIngredientsCost(ingredientData, missingIngredients)).to.equal(481.06);
+  });
 });

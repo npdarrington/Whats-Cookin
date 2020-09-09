@@ -18,8 +18,8 @@ class Pantry {
     }, [])
     return stockedIngredients;
 
-   // check if user.pantry amount is less than amount in recipeIngredients ingredient 
-   // 
+   // check if user.pantry amount is less than amount in recipeIngredients ingredient
+   //
   }
 
   getMissingIngredients(user, recipeIngredients) {
@@ -38,7 +38,7 @@ class Pantry {
 
   getMissingQuantity(user, recipeIngredients) {
     const missingIngredients = this.getMissingIngredients(user, recipeIngredients)
-    const missingQuantities = missingIngredients.map(ingredient => { 
+    const missingQuantities = missingIngredients.map(ingredient => {
       user.pantry.forEach(item => {
         if (ingredient.id === +item.ingredient) {
           ingredient.quantity.amount -= item.amount
@@ -49,14 +49,40 @@ class Pantry {
     console.log(missingQuantities)
     return missingQuantities
   }
+  calculateMissingIngredientsCost(ingredientData, missingIngredients) {
+    let totalIngredientCost = missingIngredients.reduce((totalCost, ingredient) => {
+      ingredientData.forEach(data => {
+        if (ingredient.id === data.id) {
+          totalCost += ingredient.quantity.amount * data.estimatedCostInCents;
+        }
+      })
+      return totalCost;
+    }, 0);
+    return +(`${totalIngredientCost / 100}`);
+    }
+    // let recipeIngredients = missingIngredients.map(id => {
+    //   console.log("these are the missing Ingredients", id)
+    //   return ingredientData.find(ingredient => console.log(ingredient.id))
+    // })
+    //
+    // let total = 0;
+    // recipeIngredients.reduce((price, currVal) => {
+    //   let recipeQuantity = this.ingredients.find(ingredient => {
+    //     return ingredient.id === currVal.id;
+    //   }).quantity.amount;
+    //   price = currVal.estimatedCostInCents * recipeQuantity;
+    //   return (total += price);
+    // }, 0)
+    // return +(total / 100).toFixed(2)
+  }
   // if ingredient doesn't exist in pantry (by iterating and looking for ID) => then return ingredient.amount
   // if it does match, subtract: recipe.quantity.amount - pantry item.amount  = how many more needed
   // recipe ingredient amount - pantry ingredient amount (more looping fun oh joy)
-  
+
   // let insufficientQuantities = stockedItems.filter(item => {
   //   console.log(item, ingredient.quantity.amount)
   //   return (item.amount - ingredient.quantity.amount) < 0
-  // }) 
+  // })
   // console.log('xxxx', insufficientQuantities)
 
   // reduce((missingAmounts, item) => {
@@ -67,7 +93,7 @@ class Pantry {
   //   }
   //   return missingAmounts
   // }, {})
-}
+
 
 
 module.exports = Pantry;

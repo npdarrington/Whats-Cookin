@@ -43,9 +43,9 @@ class User {
   consolidatePantry() {
     const marieKondoPantry = this.marieKondoMyPantry()
     const pantry = Object.entries(marieKondoPantry).map(ingredient => {
-      return { ingredient: ingredient[0], amount: ingredient[1] }
+      return { ingredient: +ingredient[0], amount: +ingredient[1] }
     })
-  
+
     // const pantry = Object.keys(marieKondoPantry).map(ingredient => {
     //   return { ingredient: ingredient, amount: marieKondoPantry[ingredient] }
     // })
