@@ -9,20 +9,16 @@ class Recipe {
   }
 
   calculateIngredientsCost(ingredientData) {
-    let recipeIngredients = this.ingredients.map(id => {
-      return ingredientData.find(ingredient => ingredient.id === id.id);
-    });
-    let total = 0;
-    recipeIngredients.reduce((price, currVal) => {
-      let recipeQuantity = this.ingredients.find(ingredient => {
-        return ingredient.id === currVal.id;
-      }).quantity.amount;
-      price = currVal.estimatedCostInCents * recipeQuantity;
-      return (total += price);
-    }, 0)
-    return +(total / 100).toFixed(2)
-  }
-
+    let totalIngredientCost = this.ingredients.reduce((totalCost, ingredient) => {
+      ingredientData.forEach(data => {
+        if (ingredient.id === data.id) {
+          totalCost += ingredient.quantity.amount * data.estimatedCostInCents;
+        }
+      })
+      return totalCost;
+    }, 0);
+    return +(`${totalIngredientCost / 100}`);
+}
   retrieveCookingInstructions() {
     return this.instructions
   }
