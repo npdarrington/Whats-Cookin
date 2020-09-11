@@ -12,6 +12,13 @@ function fetchData() {
     .then(data => {
       return data.recipesData;
     })
-  .catch(err => console.log(err.message))
+    .catch(err => console.log(err.message))
+
+  let userData = fetch('https://fe-apps.herokuapp.com/api/v1/whats-cookin/1911/users/wcUsersData');
+    .then(response => response.json())
+    .then(data => {
+      return data.userData
+    });
+    .catch(err => console.log(err.message))
 }
 export default fetchData;
