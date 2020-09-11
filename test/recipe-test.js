@@ -44,7 +44,7 @@ describe('Recipe', function() {
   });
 
   it('should calculate the total cost of all of the ingredients', () => {
-    expect(recipe.calculateIngredientsCost(ingredientData)).to.equal(522.32);
+    expect(recipe.calculateIngredientsCost(ingredientData)).to.equal(645.04);
   });
   it('should provide the user with all the instructions to make the recipe', () => {
     expect(recipe.retrieveCookingInstructions()).to.deep.equal(recipe.instructions)

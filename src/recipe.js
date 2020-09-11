@@ -18,7 +18,8 @@ class Recipe {
       return totalCost;
     }, 0);
     return +(`${totalIngredientCost / 100}`);
-}
+  }
+
   retrieveCookingInstructions() {
     return this.instructions
   }
@@ -35,7 +36,7 @@ class Recipe {
   findRecipeByIngredients(recipeData, selectedIngredient) {
     return recipeData.reduce((foundRecipes, recipe) => {
       recipe.ingredients.forEach(ingredient => {
-        if (ingredient.name === selectedIngredient) {
+        if (ingredient.name.includes(selectedIngredient)) {
           foundRecipes.push(recipe);
         }
       })

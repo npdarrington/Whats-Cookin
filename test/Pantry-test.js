@@ -2,10 +2,9 @@ import { expect } from 'chai';
 
 import users from '../src/data/users-data.js'
 import recipeData from '../src/data/recipe-data.js'
-import ingredientData from '../src/data/ingredient-data.js'
 import User from '../src/user.js';
 import Pantry from '../src/Pantry.js';
-import Recipe from '../src/recipe.js';
+import ingredientsData from '../src/data/ingredient-data.js';
 
 describe('Pantry', () => {
   let pantry;
@@ -25,19 +24,19 @@ describe('Pantry', () => {
   });
 
   it('should show a user missing ingredients to cook a meal', () => {
-    const recipe = recipeData[0].ingredients;
-    expect(pantry.getMissingIngredients(user, recipe)).to.deep.equal([recipe[2], recipe[7], recipe[8]]);
-  });
+    expect(pantry.getRecipeIngredientsInStock(user, recipeData[0])).to.deep.equal([
+      { id: 1123, name: 'egg', quantityNeeded: 74 },
+      { id: 1012047, name: 'sea salt', quantityNeeded: 24 },
+      { id: 10019903, name: 'semisweet chocolate chips', quantityNeeded: 2 }
+    ]);
+  })
 
   it('should show a user how many of each missing ingredients are needed for a given recipe', () => {
-    const recipe = recipeData[0].ingredients;
-    const missingQuantity = pantry.getMissingQuantity(user, recipe);
-    expect(missingQuantity[0].quantity.amount).to.equal(74);
-  });
+    expect(pantry.getRecipeIngredientsInStock(user, recipeData[0])[0].quantityNeeded).to.equal(74);
+  })
 
-  it('should show a user the total cost of the missing ingredients needed for a given recipe', () => {
-    const recipe = recipeData[0].ingredients;
-    const missingIngredients = pantry.getMissingIngredients(user, recipe);
-    expect(pantry.calculateMissingIngredientsCost(ingredientData, missingIngredients)).to.equal(481.06);
+  it('should show how much it costs to buy the missing ingredients needed for a given recipe', () => {
+    const missingIngredients = pantry.getRecipeIngredientsInStock(user, recipeData[0]);
+    expect(pantry.getMissingIngredientsPrice(missingIngredients, ingredientsData)[0].missingQuantityPrice).to.equal(349.28);
   });
 });
