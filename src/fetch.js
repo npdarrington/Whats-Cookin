@@ -20,5 +20,14 @@ function fetchData() {
       return data.userData
     });
     .catch(err => console.log(err.message))
+
+  return Promise.all([ingredientsData, recipeData, userData])
+  .then(data => {
+    let allData = {};
+    allData.ingredientsData = data[0];
+    allData.recipesData = data[1];
+    allData.userData = data[2];
+    return allData
+  });
 }
 export default fetchData;
