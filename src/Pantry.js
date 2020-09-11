@@ -2,8 +2,9 @@ class Pantry {
   constructor(userPantry = []) { //userPantry which is an array?
     this.userPantry = userPantry;
   }
+  
   getPantryItems(user) {
-    user.consolidatePantry()
+    user.consolidatePantry();
     return user.pantry;
   }
 
