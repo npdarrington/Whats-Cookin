@@ -24,6 +24,19 @@ class Pantry {
       return ingredientsMissing;
     }, []);
   }
+
+  getMissingIngredientsPrice(missingIngredients, ingredientsData) {
+    return missingIngredients.map(missingIngredient => {
+      let missingQuantityPrice = ingredientsData.reduce((totalAmount, ingredient) => {
+        if (missingIngredient.id === ingredient.id) {
+          totalAmount = missingIngredient.quantityNeeded * ingredient.estimatedCostInCents;
+        }
+        return totalAmount;
+      }, 0);
+      missingIngredient.missingQuantityPrice = (missingQuantityPrice / 100);
+      return missingIngredient;
+    });
+  }
 }
 
 module.exports = Pantry;
