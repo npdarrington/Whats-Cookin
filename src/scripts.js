@@ -75,6 +75,7 @@ function generateUser() {
 function createCards(recipeData) {
   recipeData.forEach(recipe => {
     let recipeInfo = new Recipe(recipe);
+    console.log(recipeInfo)
     let shortRecipeName = recipeInfo.name;
     recipes.push(recipeInfo);
     if (recipeInfo.name.length > 40) {
@@ -234,9 +235,18 @@ function addRecipeImage(recipe) {
   document.getElementById("recipe-title").style.backgroundImage = `url(${recipe.image})`;
 }
 
+// ********
 function generateIngredients(recipe) {
-  return recipe && recipe.ingredients.map(i => {
-    return `${capitalize(recipe.name)} (${i.quantity.amount} ${i.quantity.unit})`
+  const mappedRecipe = recipe.ingredients.map(recipeIngredient => {
+    ingredientsData.forEach(ingredient => {
+      if (ingredient.id === recipeIngredient.id) {
+        recipeIngredient.name = ingredient.name
+      }
+    })
+    return recipeIngredient
+  })
+  return recipe && mappedRecipe.map(i => {
+    return `${capitalize(i.name)} (${i.quantity.amount} ${i.quantity.unit})`
   }).join(", ");
 }
 
