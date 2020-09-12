@@ -42,6 +42,7 @@ let users;
 function getFetchData() {
   return fetchData()
     .then(data => {
+      console.log(data)
       users = data.userData
       user = new User(users[Math.floor(Math.random() * users.length)])
       recipes = data.recipeData
