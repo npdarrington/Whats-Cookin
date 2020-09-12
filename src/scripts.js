@@ -213,7 +213,8 @@ function showSavedRecipes() {
 function openRecipeInfo(event) {
   fullRecipeInfo.style.display = "inline";
   let recipeId = event.path.find(e => e.id).id;
-  let recipe = recipeData.find(recipe => recipe.id === Number(recipeId));
+  let recipe = recipes.find(recipe => recipe.id === Number(recipeId));
+  console.log('RECIPE', recipe)
   generateRecipeTitle(recipe, generateIngredients(recipe));
   addRecipeImage(recipe);
   generateInstructions(recipe);
@@ -235,7 +236,7 @@ function addRecipeImage(recipe) {
 
 function generateIngredients(recipe) {
   return recipe && recipe.ingredients.map(i => {
-    return `${capitalize(i.name)} (${i.quantity.amount} ${i.quantity.unit})`
+    return `${capitalize(recipe.name)} (${i.quantity.amount} ${i.quantity.unit})`
   }).join(", ");
 }
 
