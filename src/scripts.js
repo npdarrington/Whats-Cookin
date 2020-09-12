@@ -47,7 +47,8 @@ function getFetchData() {
       ingredientsData = data.ingredientsData
     })
     .then(() => generateUser())
-    .then(() => createCards(recipes))  
+    .then(() => createCards(recipes)) 
+    .then(() => findTags())
     // need to resolve whole page of data in this method
     .catch(err => console.log(err.message))
 }
@@ -102,7 +103,7 @@ function addToDom(recipeInfo, shortRecipeName) {
 // FILTER BY RECIPE TAGS
 function findTags() {
   let tags = [];
-  recipeData.forEach(recipe => {
+  recipes.forEach(recipe => {
     recipe.tags.forEach(tag => {
       if (!tags.includes(tag)) {
         tags.push(tag);
@@ -330,7 +331,6 @@ function findPantryInfo() {
       pantryInfo.push({name: itemInfo.name, count: item.amount});
     }
   });
-  console.log(user)
   displayPantryInfo(pantryInfo.sort((a, b) => a.name.localeCompare(b.name)));
 }
 
