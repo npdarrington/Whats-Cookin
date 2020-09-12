@@ -339,14 +339,17 @@ function findPantryInfo() {
     if (itemInfo && originalIngredient) {
       originalIngredient.count += item.amount;
     } else if (itemInfo) {
-      pantryInfo.push({name: itemInfo.name, count: item.amount});
+      pantryInfo.push({name: itemInfo.name, count: item.amount, id: itemInfo.id});
     }
   });
   displayPantryInfo(pantryInfo.sort((a, b) => a.name.localeCompare(b.name)));
 }
 
 function displayPantryInfo(pantry) {
+  //*** pantry = DOM pantry with just name and #
+  console.log(pantry)
   pantry.forEach(ingredient => {
+    console.log(ingredient)
     let ingredientHtml = `<li><input type="checkbox" class="pantry-checkbox" id="${ingredient.name}">
       <label for="${ingredient.name}">${ingredient.name}, ${ingredient.count}</label></li>`;
     document.querySelector(".pantry-list").insertAdjacentHTML("beforeend",
@@ -367,6 +370,7 @@ function findCheckedPantryBoxes() {
 }
 
 function findRecipesWithCheckedIngredients(selected) {
+  
   let recipeChecker = (arr, target) => target.every(v => arr.includes(v));
   let ingredientNames = selected.map(item => {
     return item.id;
@@ -382,3 +386,12 @@ function findRecipesWithCheckedIngredients(selected) {
     }
   })
 }
+
+// const mappedRecipe = recipe.ingredients.map(recipeIngredient => {
+//   ingredientsData.forEach(ingredient => {
+//     if (ingredient.id === recipeIngredient.id) {
+//       recipeIngredient.name = ingredient.name
+//     }
+//   })
+//   return recipeIngredient
+// })
