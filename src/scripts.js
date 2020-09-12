@@ -1,8 +1,8 @@
 import './css/styles.scss';
-import fetchData from './fetch';
+import Pantry from './Pantry';
 import User from './user';
 import Recipe from './recipe';
-import Pantry from './Pantry';
+import fetchData from './fetch';
 
 let allRecipesBtn = document.querySelector(".show-all-btn");
 let filterBtn = document.querySelector(".filter-btn");
@@ -18,9 +18,9 @@ let showPantryRecipes = document.querySelector(".show-pantry-recipes-btn");
 let tagList = document.querySelector(".tag-list");
 
 window.addEventListener('load', getFetchData);
-window.addEventListener("load", createCards);
-window.addEventListener("load", findTags);
-window.addEventListener("load", generateUser);
+// window.addEventListener("load", createCards);
+// window.addEventListener("load", findTags);
+// window.addEventListener("load", generateUser);
 allRecipesBtn.addEventListener("click", showAllRecipes);
 filterBtn.addEventListener("click", findCheckedBoxes);
 main.addEventListener("click", addToMyRecipes);
@@ -30,31 +30,35 @@ searchBtn.addEventListener("click", searchRecipes);
 showPantryRecipes.addEventListener("click", findCheckedPantryBoxes);
 searchForm.addEventListener("submit", pressEnterSearch);
 
-let recipes;
-let currentUser;
+let recipes = []
+let recipe;
+let user;
 let pantry;
-let ingredients;
+let ingredientsData;
 let users;
 
-
-// call fetch data
 function getFetchData() {
   return fetchData()
     .then(data => {
-      console.log('hi')
       users = data.userData
-      console.log(data)
-      currentUser = new User(users[Math.floor(Math.random() * users.length)])
-      ingredients = data.ingredientsData
+      user = new User(users[Math.floor(Math.random() * users.length)])
       recipes = data.recipeData
+      ingredientsData = data.ingredientsData
     })
-    .then(() => console.log(users, ingredients, recipes))
+    .then(() => generateUser())
+    .then(() => createCards(recipes))  
+    // need to resolve whole page of data in this method
     .catch(err => console.log(err.message))
 }
 
+function displayInitialDom() {
+  generateUser()
+  createCards()
+  findTags()
+}
 // GENERATE A USER ON LOAD
 function generateUser() {
-  user = new User(users[Math.floor(Math.random() * users.length)]);
+  // user = new User(users[Math.floor(Math.random() * users.length)]);
   let firstName = user.name.split(" ")[0];
   let welcomeMsg = `
     <div class="welcome-msg">
@@ -62,11 +66,11 @@ function generateUser() {
     </div>`;
   document.querySelector(".banner-image").insertAdjacentHTML("afterbegin",
     welcomeMsg);
-  findPantryInfo();
+  // findPantryInfo();
 }
 
 // CREATE RECIPE CARDS
-function createCards() {
+function createCards(recipeData) {
   recipeData.forEach(recipe => {
     let recipeInfo = new Recipe(recipe);
     let shortRecipeName = recipeInfo.name;
@@ -312,7 +316,7 @@ function showAllRecipes() {
 function findPantryInfo() {
   user.pantry.forEach(item => {
     let itemInfo = ingredientsData.find(ingredient => {
-      return ingredient.id === item.ingredient;
+      return ingrediexnt.id === item.ingredient;
     });
     let originalIngredient = pantryInfo.find(ingredient => {
       if (itemInfo) {
