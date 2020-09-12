@@ -31,6 +31,7 @@ showPantryRecipes.addEventListener("click", findCheckedPantryBoxes);
 searchForm.addEventListener("submit", pressEnterSearch);
 
 let recipes = []
+let pantryInfo = []
 let recipe;
 let user;
 let pantry;
@@ -66,7 +67,7 @@ function generateUser() {
     </div>`;
   document.querySelector(".banner-image").insertAdjacentHTML("afterbegin",
     welcomeMsg);
-  // findPantryInfo();
+  findPantryInfo();
 }
 
 // CREATE RECIPE CARDS
@@ -329,6 +330,7 @@ function findPantryInfo() {
       pantryInfo.push({name: itemInfo.name, count: item.amount});
     }
   });
+  console.log(user)
   displayPantryInfo(pantryInfo.sort((a, b) => a.name.localeCompare(b.name)));
 }
 
