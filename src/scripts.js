@@ -10,17 +10,14 @@ let fullRecipeInfo = document.querySelector(".recipe-instructions");
 let main = document.querySelector("main");
 let menuOpen = false;
 let pantryBtn = document.querySelector(".my-pantry-btn");
-let pantryInfo = [];
-let recipes = [];
 let savedRecipesBtn = document.querySelector(".saved-recipes-btn");
 let searchBtn = document.querySelector(".search-btn");
 let searchForm = document.querySelector("#search");
 let searchInput = document.querySelector("#search-input");
 let showPantryRecipes = document.querySelector(".show-pantry-recipes-btn");
 let tagList = document.querySelector(".tag-list");
-let user;
 
-
+window.addEventListener('load', getFetchData);
 window.addEventListener("load", createCards);
 window.addEventListener("load", findTags);
 window.addEventListener("load", generateUser);
@@ -32,6 +29,28 @@ savedRecipesBtn.addEventListener("click", showSavedRecipes);
 searchBtn.addEventListener("click", searchRecipes);
 showPantryRecipes.addEventListener("click", findCheckedPantryBoxes);
 searchForm.addEventListener("submit", pressEnterSearch);
+
+let recipes;
+let currentUser;
+let pantry;
+let ingredients;
+let users;
+
+
+// call fetch data
+function getFetchData() {
+  return fetchData()
+    .then(data => {
+      console.log('hi')
+      users = data.userData
+      console.log(data)
+      currentUser = new User(users[Math.floor(Math.random() * users.length)])
+      ingredients = data.ingredientsData
+      recipes = data.recipeData
+    })
+    .then(() => console.log(users, ingredients, recipes))
+    .catch(err => console.log(err.message))
+}
 
 // GENERATE A USER ON LOAD
 function generateUser() {
@@ -289,7 +308,7 @@ function showAllRecipes() {
   showWelcomeBanner();
 }
 
-// CREATE AND USE PANTRY
+// CREATE AND USE PANTRY -- MAY NEED TO BE REWRITTEN*** display portion -- sort before display, not during
 function findPantryInfo() {
   user.pantry.forEach(item => {
     let itemInfo = ingredientsData.find(ingredient => {
