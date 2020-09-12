@@ -347,10 +347,8 @@ function findPantryInfo() {
 
 function displayPantryInfo(pantry) {
   //*** pantry = DOM pantry with just name and #
-  console.log(pantry)
   pantry.forEach(ingredient => {
-    console.log(ingredient)
-    let ingredientHtml = `<li><input type="checkbox" class="pantry-checkbox" id="${ingredient.name}">
+    let ingredientHtml = `<li><input type="checkbox" class="pantry-checkbox" id="${ingredient.id}">
       <label for="${ingredient.name}">${ingredient.name}, ${ingredient.count}</label></li>`;
     document.querySelector(".pantry-list").insertAdjacentHTML("beforeend",
       ingredientHtml);
@@ -373,13 +371,14 @@ function findRecipesWithCheckedIngredients(selected) {
   
   let recipeChecker = (arr, target) => target.every(v => arr.includes(v));
   let ingredientNames = selected.map(item => {
-    return item.id;
+    return +item.id;
   })
   recipes.forEach(recipe => {
     let allRecipeIngredients = [];
     recipe.ingredients.forEach(ingredient => {
-      allRecipeIngredients.push(ingredient.name);
+      allRecipeIngredients.push(ingredient.id);
     });
+    console.log(ingredientNames)
     if (!recipeChecker(allRecipeIngredients, ingredientNames)) {
       let domRecipe = document.getElementById(`${recipe.id}`);
       domRecipe.style.display = "none";
