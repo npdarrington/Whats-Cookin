@@ -1,4 +1,5 @@
 import './css/styles.scss';
+// import './images/apple-logo-png'
 import Pantry from './Pantry';
 import User from './user';
 import Recipe from './recipe';
