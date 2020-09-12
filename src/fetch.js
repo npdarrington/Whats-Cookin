@@ -7,27 +7,27 @@ function fetchData() {
     })
     .catch(err => console.log(err.message))
 
-  let recipeData = fetch('https://fe-apps.herokuapp.com/api/v1/whats-cookin/1911/ingredients/ingredientsData');
+  let recipeData = fetch('https://fe-apps.herokuapp.com/api/v1/whats-cookin/1911/recipes/recipeData')
     .then(response => response.json())
     .then(data => {
-      return data.recipesData;
+      return data.recipeData;
     })
     .catch(err => console.log(err.message))
 
-  let userData = fetch('https://fe-apps.herokuapp.com/api/v1/whats-cookin/1911/users/wcUsersData');
+  let userData = fetch('https://fe-apps.herokuapp.com/api/v1/whats-cookin/1911/users/wcUsersData')
     .then(response => response.json())
     .then(data => {
-      return data.userData
-    });
+      return data.wcUsersData
+    })
     .catch(err => console.log(err.message))
 
   return Promise.all([ingredientsData, recipeData, userData])
-  .then(data => {
-    let allData = {};
-    allData.ingredientsData = data[0];
-    allData.recipesData = data[1];
-    allData.userData = data[2];
-    return allData
-  });
+    .then(data => {
+      let allData = {};
+      allData.ingredientsData = data[0];
+      allData.recipeData = data[1];
+      allData.userData = data[2];
+      return allData
+    });
 }
 export default fetchData;
