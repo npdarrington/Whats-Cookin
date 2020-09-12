@@ -1,7 +1,8 @@
 import './css/styles.scss';
-
+import fetchData from './fetch';
 import User from './user';
 import Recipe from './recipe';
+import Pantry from './Pantry';
 
 let allRecipesBtn = document.querySelector(".show-all-btn");
 let filterBtn = document.querySelector(".filter-btn");
