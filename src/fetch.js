@@ -27,10 +27,10 @@ const getUserData = () => {
     .catch(err => console.log(err.message))
 }
 
-const postUserData = () => {
-  return fetch(`${startingAPItoURL}/users/wcUsersData`){
+const postUserData = (userData) => {
+  return fetch(`${startingAPItoURL}/users/wcUsersData`,{
     method: 'POST',
-    body: JSON.stringify(action.value),
+    body: JSON.stringify(userData),
     headers: {
       'content-type': 'application/json',
     },
@@ -40,11 +40,10 @@ const postUserData = () => {
       return responseJson;
     });
 };
-}
-
 
 export default {
  getIngredientsData,
  getRecipeData,
- getUserData
+ getUserData,
+ postUserData
 }
