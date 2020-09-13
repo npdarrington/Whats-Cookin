@@ -39,4 +39,18 @@ describe('Pantry', () => {
     const missingIngredients = pantry.getRecipeIngredientsInStock(user, recipeData[0]);
     expect(pantry.getMissingIngredientsPrice(missingIngredients, ingredientsData)[0].missingQuantityPrice).to.equal(349.28);
   });
+
+  it('should add the correct number of ingredients to the pantry whenever a user attempts to cook a recipe w/o ample ingredients', () => {
+    const missingIngredients = pantry.getRecipeIngredientsInStock(user, recipeData[0]);
+    expect(pantry.addIngredientsToCook(missingIngredients, user)).to.equal('foo')
+  });
+
+  it('should remove the correct number of ingredients from the pantry when a given recipe is cooked', () => {
+    console.log(pantry.getRecipeIngredientsInStock(user, recipeData[0]))
+    expect(pantry.getRecipeIngredientsInStock(user, recipeData[0])).to.deep.equal(50000000);
+    // it will need to find the ingredient by number within the pantry class and then subtract the correct amount
+
+  });
+
+
 });

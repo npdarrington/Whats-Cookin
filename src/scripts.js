@@ -411,6 +411,9 @@ function findRecipesWithCheckedIngredients(selected) {
     }
   })
 }
+function saveUserPantry() {
+  //Whenever the user buys ingredients, we want 
+}
 
 
 // const mappedRecipe = recipe.ingredients.map(recipeIngredient => {
