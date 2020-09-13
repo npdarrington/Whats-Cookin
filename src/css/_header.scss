@@ -35,7 +35,7 @@ span {
   border-radius: 10px 0px 0px 10px;
   border: none;
   box-shadow: inset -3px -1px 20px 1px #5c7894;
-  color: #5B7894;
+  color: $grey-blue-background-color;
   font-family: "Quicksand", sans-serif;
   font-size: 42px;
   height: 100%;
@@ -55,7 +55,7 @@ span {
   }
 
   &::placeholder {
-    color: #5B7894;
+    color: $grey-blue-background-color;
     font-size: 20px;
     text-align: right;
     text-shadow: none;
@@ -79,7 +79,7 @@ span {
 
 .nav-btn {
   align-items: center;
-  background: #5B7894 no-repeat;
+  background: $grey-blue-background-color no-repeat;
   border: none;
   cursor: pointer;
   display: flex;
