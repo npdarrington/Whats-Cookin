@@ -1,0 +1,25 @@
+aside {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  height: auto;
+  text-align: center;
+}
+
+.wrap {
+  background-color: white;
+  height: 100vh;
+  padding: 10px;
+  position: relative;
+  width: 200px;
+}
+
+ul {
+  list-style-type: none;
+  text-align: left;
+  padding-left: 35px;
+}
+
+li {
+  margin: 2px;
+}

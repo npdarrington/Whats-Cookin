@@ -1,5 +1,5 @@
 import './css/styles.scss';
-// import './images/apple-logo-png'
+import './index.js';
 import Pantry from './Pantry';
 import User from './user';
 import Recipe from './recipe';
@@ -49,7 +49,7 @@ function getFetchData() {
       ingredientsData = data.ingredientsData
     })
     .then(() => generateUser())
-    .then(() => createCards(recipes)) 
+    .then(() => createCards(recipes))
     .then(() => findTags())
     // need to resolve whole page of data in this method
     .catch(err => console.log(err.message))
@@ -370,7 +370,7 @@ function findCheckedPantryBoxes() {
 }
 
 function findRecipesWithCheckedIngredients(selected) {
-  
+
   let recipeChecker = (arr, target) => target.every(v => arr.includes(v));
   let ingredientNames = selected.map(item => {
     return +item.id;

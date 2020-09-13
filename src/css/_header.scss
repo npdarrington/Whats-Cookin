@@ -1,0 +1,118 @@
+header {
+  display: flex;
+  flex-direction: row;
+  grid-area: header;
+  padding: 0% 0%;
+  width: 100%;
+}
+
+span {
+  color: $lemon-lime;
+  font-weight: 400;
+}
+
+.header-apple-icon {
+  height: 40px;
+  margin-left: 5px;
+  width: 35px;
+}
+
+#search {
+  border-radius: 15px;
+  border: 3px outset $lemon-lime;
+  box-shadow: 0px 0px 7px 0px #475d74;
+  display: flex;
+  flex-direction: row;
+  font-family: "Quicksand", sans-serif;
+  justify-content: center;
+  margin: 1.2% 0.5% 1.2% 0%;
+  width: 100%;
+}
+
+#search-input {
+  background-color: #b6dcca;
+  background: -webkit-gradient( linear,left top, left bottom, color-stop(0, rgb(255, 255, 255)), color-stop(1, rgb(225,225,225)));
+  border-radius: 10px 0px 0px 10px;
+  border: none;
+  box-shadow: inset -3px -1px 20px 1px #5c7894;
+  color: $grey-blue-background-color;
+  font-family: "Quicksand", sans-serif;
+  font-size: 42px;
+  height: 100%;
+  outline: none;
+  padding: 0% 2% 0% 0%;
+  text-align: right;
+  transition: .8s ease;
+  width: 100%;
+
+  &:hover {
+    box-shadow: inset 0px 0px 0px 0px white;
+    transition: .8s ease;
+  }
+
+  &:focus {
+    box-shadow: inset 0px 0px 0px 0px white;
+  }
+
+  &::placeholder {
+    color: $grey-blue-background-color;
+    font-size: 20px;
+    text-align: right;
+    text-shadow: none;
+  }
+
+  &:focus::placeholder {
+    font-size: 0px;
+    transition: .8s ease;
+  }
+}
+
+.search-label {
+  display: none;
+}
+
+.search-btn {
+  border-left: 3px outset $lemon-lime;
+  border-radius: 0px 15px 15px 0px;
+  padding: 1%;
+}
+
+.nav-btn {
+  align-items: center;
+  background: $grey-blue-background-color no-repeat;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-size: 0px;
+  font-weight: 700;
+  justify-content: center;
+  margin: 0%;
+  outline: none;
+  overflow: hidden;
+  text-align: center;
+  transition: .4s ease;
+  width: 15%;
+
+  &:hover {
+    color: $lemon-lime;
+    font-size: 14px;
+    text-shadow: 0px 2px 4px black;
+    transition: .4s ease;
+  }
+
+  img {
+    max-height: 40px;
+    max-width: 40px;
+    padding: 2px 0px;
+  }
+}
+
+.saved-ingredients-btn {
+  border-left: 3px solid $lemon-lime;
+}
+
+.ing-pan-btn {
+  margin: 1% 0%;
+  padding: 1px 6px 5px 0px;
+}
