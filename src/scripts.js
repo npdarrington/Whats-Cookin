@@ -412,6 +412,7 @@ function findRecipesWithCheckedIngredients(selected) {
   })
 }
 
+
 // const mappedRecipe = recipe.ingredients.map(recipeIngredient => {
 //   ingredientsData.forEach(ingredient => {
 //     if (ingredient.id === recipeIngredient.id) {

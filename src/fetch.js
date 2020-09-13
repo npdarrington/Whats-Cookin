@@ -1,7 +1,7 @@
-
+const startingAPItoURL = 'https://fe-apps.herokuapp.com/api/v1/whats-cookin/1911'
 
 const getIngredientsData = () => {
-  return fetch('https://fe-apps.herokuapp.com/api/v1/whats-cookin/1911/ingredients/ingredientsData')
+  return fetch(`${startingAPItoURL}/ingredients/ingredientsData`)
     .then(response => response.json())
     .then(data => {
       return data.ingredientsData;
@@ -10,7 +10,7 @@ const getIngredientsData = () => {
 }
 
 const getRecipeData = () => {
-  return fetch('https://fe-apps.herokuapp.com/api/v1/whats-cookin/1911/recipes/recipeData')
+  return fetch(`${startingAPItoURL}/recipes/recipeData`)
     .then(response => response.json())
     .then(data => {
       return data.recipeData;
@@ -19,13 +19,29 @@ const getRecipeData = () => {
 }
 
 const getUserData = () => {
-  return fetch('https://fe-apps.herokuapp.com/api/v1/whats-cookin/1911/users/wcUsersData')
+  return fetch(`${startingAPItoURL}/users/wcUsersData`)
     .then(response => response.json())
     .then(data => {
       return data.wcUsersData
     })
     .catch(err => console.log(err.message))
 }
+
+const postUserData = () => {
+  return fetch(`${startingAPItoURL}/users/wcUsersData`){
+    method: 'POST',
+    body: JSON.stringify(action.value),
+    headers: {
+      'content-type': 'application/json',
+    },
+  })
+    .then(response => response.json())
+    .then(responseJson => {
+      return responseJson;
+    });
+};
+}
+
 
 export default {
  getIngredientsData,
