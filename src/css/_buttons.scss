@@ -1,0 +1,27 @@
+.show-pantry-recipes-btn,
+.show-all-btn,
+.filter-btn {
+  background-color: #359567;
+  border: 0;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  font-family: "Quicksand", sans-serif;
+  font-size: 12pt;
+  font-weight: bold;
+  padding: 5px 10px 5px 10px;
+}
+
+.show-pantry-recipes-btn {
+  margin-top: 10px;
+}
+
+.show-all-btn {
+  height: 40px;
+  margin-top: 20px;
+  width: 200px;
+}
+
+.filter-btn:hover {
+  background-color: #84C8A4;
+}
