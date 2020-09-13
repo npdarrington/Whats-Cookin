@@ -1,3 +1,8 @@
+//fetching 3 times, then promise.all resolves redundancies -- storing fetched data as obj properties(allData)
+//return in allData?
+
+// instead: start with Promise.all, two thens, and a catch
+
 
 function fetchData() {
   let ingredientsData = fetch('https://fe-apps.herokuapp.com/api/v1/whats-cookin/1911/ingredients/ingredientsData')

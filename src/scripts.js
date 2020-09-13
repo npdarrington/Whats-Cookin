@@ -1,4 +1,5 @@
 import './css/styles.scss';
+// import './images/apple-logo-png'
 import Pantry from './Pantry';
 import User from './user';
 import Recipe from './recipe';
@@ -31,6 +32,7 @@ showPantryRecipes.addEventListener("click", findCheckedPantryBoxes);
 searchForm.addEventListener("submit", pressEnterSearch);
 
 let recipes = []
+let pantryInfo = []
 let recipe;
 let user;
 let pantry;
@@ -40,13 +42,15 @@ let users;
 function getFetchData() {
   return fetchData()
     .then(data => {
+      console.log(data)
       users = data.userData
       user = new User(users[Math.floor(Math.random() * users.length)])
       recipes = data.recipeData
       ingredientsData = data.ingredientsData
     })
     .then(() => generateUser())
-    .then(() => createCards(recipes))  
+    .then(() => createCards(recipes)) 
+    .then(() => findTags())
     // need to resolve whole page of data in this method
     .catch(err => console.log(err.message))
 }
@@ -66,23 +70,24 @@ function generateUser() {
     </div>`;
   document.querySelector(".banner-image").insertAdjacentHTML("afterbegin",
     welcomeMsg);
-  // findPantryInfo();
+  findPantryInfo();
 }
 
 // CREATE RECIPE CARDS
 function createCards(recipeData) {
   recipeData.forEach(recipe => {
     let recipeInfo = new Recipe(recipe);
+    console.log(recipeInfo)
     let shortRecipeName = recipeInfo.name;
     recipes.push(recipeInfo);
     if (recipeInfo.name.length > 40) {
       shortRecipeName = recipeInfo.name.substring(0, 40) + "...";
     }
-    addToDom(recipeInfo, shortRecipeName)
+    displayRecipeDetails(recipeInfo, shortRecipeName)
   });
 }
 
-function addToDom(recipeInfo, shortRecipeName) {
+function displayRecipeDetails(recipeInfo, shortRecipeName) {
   let cardHtml = `
     <div class="recipe-card" id=${recipeInfo.id}>
       <h3 maxlength="40">${shortRecipeName}</h3>
@@ -101,7 +106,7 @@ function addToDom(recipeInfo, shortRecipeName) {
 // FILTER BY RECIPE TAGS
 function findTags() {
   let tags = [];
-  recipeData.forEach(recipe => {
+  recipes.forEach(recipe => {
     recipe.tags.forEach(tag => {
       if (!tags.includes(tag)) {
         tags.push(tag);
@@ -211,7 +216,8 @@ function showSavedRecipes() {
 function openRecipeInfo(event) {
   fullRecipeInfo.style.display = "inline";
   let recipeId = event.path.find(e => e.id).id;
-  let recipe = recipeData.find(recipe => recipe.id === Number(recipeId));
+  let recipe = recipes.find(recipe => recipe.id === Number(recipeId));
+  console.log('RECIPE', recipe)
   generateRecipeTitle(recipe, generateIngredients(recipe));
   addRecipeImage(recipe);
   generateInstructions(recipe);
@@ -231,8 +237,17 @@ function addRecipeImage(recipe) {
   document.getElementById("recipe-title").style.backgroundImage = `url(${recipe.image})`;
 }
 
+// ********
 function generateIngredients(recipe) {
-  return recipe && recipe.ingredients.map(i => {
+  const mappedRecipe = recipe.ingredients.map(recipeIngredient => {
+    ingredientsData.forEach(ingredient => {
+      if (ingredient.id === recipeIngredient.id) {
+        recipeIngredient.name = ingredient.name
+      }
+    })
+    return recipeIngredient
+  })
+  return recipe && mappedRecipe.map(i => {
     return `${capitalize(i.name)} (${i.quantity.amount} ${i.quantity.unit})`
   }).join(", ");
 }
@@ -275,7 +290,7 @@ function pressEnterSearch(event) {
 
 function searchRecipes() {
   showAllRecipes();
-  let searchedRecipes = recipeData.filter(recipe => {
+  let searchedRecipes = recipes.filter(recipe => {
     return recipe.name.toLowerCase().includes(searchInput.value.toLowerCase());
   });
   filterNonSearched(createRecipeObject(searchedRecipes));
@@ -326,15 +341,16 @@ function findPantryInfo() {
     if (itemInfo && originalIngredient) {
       originalIngredient.count += item.amount;
     } else if (itemInfo) {
-      pantryInfo.push({name: itemInfo.name, count: item.amount});
+      pantryInfo.push({name: itemInfo.name, count: item.amount, id: itemInfo.id});
     }
   });
   displayPantryInfo(pantryInfo.sort((a, b) => a.name.localeCompare(b.name)));
 }
 
 function displayPantryInfo(pantry) {
+  //*** pantry = DOM pantry with just name and #
   pantry.forEach(ingredient => {
-    let ingredientHtml = `<li><input type="checkbox" class="pantry-checkbox" id="${ingredient.name}">
+    let ingredientHtml = `<li><input type="checkbox" class="pantry-checkbox" id="${ingredient.id}">
       <label for="${ingredient.name}">${ingredient.name}, ${ingredient.count}</label></li>`;
     document.querySelector(".pantry-list").insertAdjacentHTML("beforeend",
       ingredientHtml);
@@ -354,18 +370,29 @@ function findCheckedPantryBoxes() {
 }
 
 function findRecipesWithCheckedIngredients(selected) {
+  
   let recipeChecker = (arr, target) => target.every(v => arr.includes(v));
   let ingredientNames = selected.map(item => {
-    return item.id;
+    return +item.id;
   })
   recipes.forEach(recipe => {
     let allRecipeIngredients = [];
     recipe.ingredients.forEach(ingredient => {
-      allRecipeIngredients.push(ingredient.name);
+      allRecipeIngredients.push(ingredient.id);
     });
+    console.log(ingredientNames)
     if (!recipeChecker(allRecipeIngredients, ingredientNames)) {
       let domRecipe = document.getElementById(`${recipe.id}`);
       domRecipe.style.display = "none";
     }
   })
 }
+
+// const mappedRecipe = recipe.ingredients.map(recipeIngredient => {
+//   ingredientsData.forEach(ingredient => {
+//     if (ingredient.id === recipeIngredient.id) {
+//       recipeIngredient.name = ingredient.name
+//     }
+//   })
+//   return recipeIngredient
+// })
