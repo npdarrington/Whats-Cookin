@@ -44,28 +44,34 @@ span {
   text-align: right;
   transition: .8s ease;
   width: 100%;
+
+  &:hover {
+    box-shadow: inset 0px 0px 0px 0px white;
+    transition: .8s ease;
+  }
+
+  &:focus {
+    box-shadow: inset 0px 0px 0px 0px white;
+  }
+
+  &::placeholder {
+    color: #5B7894;
+    font-size: 20px;
+    text-align: right;
+    text-shadow: none;
+  }
+
+  &:focus::placeholder {
+    font-size: 0px;
+    transition: .8s ease;
+  }
 }
 
-#search-input:hover {
-  box-shadow: inset 0px 0px 0px 0px white;
-  transition: .8s ease;
-}
 
-#search-input:focus {
-  box-shadow: inset 0px 0px 0px 0px white;
-}
 
-#search-input::placeholder {
-  color: #5B7894;
-  font-size: 20px;
-  text-align: right;
-  text-shadow: none;
-}
 
-#search-input:focus::placeholder {
-  font-size: 0px;
-  transition: .8s ease;
-}
+
+
 
 .search-label {
   display: none;
