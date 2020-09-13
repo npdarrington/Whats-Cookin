@@ -17,9 +17,9 @@
 
 #exit-recipe-btn {
   background: white;
-  border: 2px double #359567;
+  border: 2px double $mint-green;
   border-radius: 5px;
-  color: #359567;
+  color: $mint-green;
   cursor: pointer;
   font-size: 20px;
   font-weight: 700;
@@ -47,7 +47,7 @@
 
 .recipe-instructions h4 {
   background: white;
-  color: #359567;
+  color: $mint-green;
 }
 
 .recipe-instructions p {
