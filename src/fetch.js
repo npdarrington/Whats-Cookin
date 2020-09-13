@@ -26,3 +26,9 @@ const getUserData = () => {
     })
     .catch(err => console.log(err.message))
 }
+
+export default {
+ getIngredientsData,
+ getRecipeData,
+ getUserData
+}
