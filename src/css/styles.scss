@@ -2,6 +2,7 @@
 @import './_sidebar.scss';
 @import './_recipeCards.scss';
 @import './_buttons.scss';
+@import './_pantry.scss';
 
 body {
   background-color: #5B7894;
@@ -85,32 +86,6 @@ h4 {
 
 
 
-/* PANTRY LIST */
-.drop-menu {
-  align-items: center;
-  background-color: #DAE4EE;
-  display: none;
-  height: 600px;
-  margin-left: 81%;
-  margin-top: 92px;
-  overflow: scroll;
-  padding: 12px;
-  position: absolute;
-  text-align: center;
-  width: 250px;
-  z-index: 3;
-}
-
-.drop-menu h2 {
-  color: #359567;
-  margin: 0px;
-}
-
-.pantry-list {
-  color: #000000;
-  padding-left: 15px;
-  text-align: left;
-}
 
 
 /* RECIPE INSTRUCTIONS */
