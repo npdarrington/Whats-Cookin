@@ -9,7 +9,7 @@ main {
 
 .recipe-card {
   background-color: white;
-  border: 2px solid #C4EB67;
+  border: 2px solid $lemon-lime;
   border-radius: 7px;
   cursor: pointer;
   height: 270px;
@@ -31,7 +31,7 @@ main {
 }
 
 .recipe-card:hover h3 {
-  text-shadow: 0px 0px 4px #C4EB67;
+  text-shadow: 0px 0px 4px $lemon-lime;
   transition: .8s ease;
 }
 

@@ -1,6 +1,6 @@
 .recipe-instructions {
   background: white;
-  border: 3px solid #C4EB67;
+  border: 3px solid $lemon-lime;
   border-radius: 10px;
   box-shadow: 1px 1px 115px black;
   display: none;
@@ -29,7 +29,7 @@
 }
 
 #exit-recipe-btn:hover {
-  background: #C4EB67;
+  background: $lemon-lime;
   transition: .3s ease;
 }
 
