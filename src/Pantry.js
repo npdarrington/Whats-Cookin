@@ -34,9 +34,11 @@ class Pantry {
       })
       return userPantryItem
     })
+    if (ingredientsMissing.length !== 0){
     ingredientsMissing.forEach(ingredient => {
       user.pantry.push({ingredient: ingredient.id, amount: ingredient.quantityNeeded})
-    })
+      })
+    }
   }
 
   getMissingIngredientsPrice(missingIngredients, ingredientsData) {
@@ -52,6 +54,14 @@ class Pantry {
     });
   }
 
+  removeCookedIngredients(user, recipe) {
+
+    //we will need two parameters, the user and the recipe being cooked
+    //for the entire recipe, for each ingredient, iterate over the user pantry array, and remove the ingredients and the quantity needed of them to cook the recipe.
+    //if there are not enough ingredients to cook the recipe, alert user
+    //return modified pantry array with decreased ingredient amounts
+    //if the ingredient count is zero, should it remove it totally?
+  }
   saveUserPantry() {
     //Whenever the user buys ingredients, we want to add to the the ingredient count,
     //whenever the user cooks a recipe, we want to take away from the ingredient count
