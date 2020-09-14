@@ -314,8 +314,10 @@ function toggleMenu() {
   menuOpen = !menuOpen;
   if (menuOpen) {
     menuDropdown.style.display = "block";
+    pantryBtn.setAttribute('aria-expanded', true);
   } else {
     menuDropdown.style.display = "none";
+    pantryBtn.setAttribute('aria-expanded', false);
   }
 }
 
