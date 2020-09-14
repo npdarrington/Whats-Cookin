@@ -62,7 +62,6 @@ class Pantry {
       })
     })
   }
-
   saveUserPantry() {
     //Whenever the user buys ingredients, we want to add to the the ingredient count,
     //whenever the user cooks a recipe, we want to take away from the ingredient count
@@ -73,5 +72,4 @@ class Pantry {
     //
   }
 }
-
 module.exports = Pantry;

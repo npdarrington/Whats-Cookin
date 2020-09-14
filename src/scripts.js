@@ -26,6 +26,7 @@ window.addEventListener('load', function () {
 // window.addEventListener("load", createCards);
 // window.addEventListener("load", findTags);
 // window.addEventListener("load", generateUser);
+
 allRecipesBtn.addEventListener("click", showAllRecipes);
 filterBtn.addEventListener("click", findCheckedBoxes);
 main.addEventListener("click", addToMyRecipes);
@@ -46,18 +47,10 @@ let users;
 function getUserData() {
   return fetches.getUserData()
     .then(data => {
-      console.log("this is data", data)
       users = data
-      // console.log(users.length)
       user = new User(users[Math.floor(Math.random() * users.length)])
-      // recipes = data.recipeData
-      // ingredientsData = data.ingredientsData
     })
     .then(() => generateUser())
-    .then(() => console.log("second then", user))
-    // .then(() => createCards(recipes))
-    // .then(() => findTags())
-    // need to resolve whole page of data in this method
     .catch(err => console.log(err.message))
 }
 
@@ -67,24 +60,17 @@ function getRecipeData() {
       recipe = data
     })
     .then(() => createCards(recipe))
-    .then(() => console.log("this is our recipe data", recipe))
 }
 
 function getIngredientsData() {
   return fetches.getIngredientsData()
   .then(data => {
-    console.log('this is ingredients data', data)
     ingredientsData = data
   })
+  .then(() => findTags())
   .catch(err => console.log(err.message))
 }
 
-
-function displayInitialDom() {
-  generateUser()
-  createCards()
-  findTags()
-}
 // GENERATE A USER ON LOAD
 function generateUser() {
   let firstName = user.name.split(" ")[0];
@@ -94,14 +80,13 @@ function generateUser() {
     </div>`;
   document.querySelector(".banner-image").insertAdjacentHTML("afterbegin",
     welcomeMsg);
-  // findPantryInfo();
+  findPantryInfo();
 }
 
 // CREATE RECIPE CARDS
 function createCards(recipeData) {
   recipeData.forEach(recipe => {
     let recipeInfo = new Recipe(recipe);
-    console.log(recipeInfo)
     let shortRecipeName = recipeInfo.name;
     recipes.push(recipeInfo);
     if (recipeInfo.name.length > 40) {
@@ -130,10 +115,12 @@ function displayRecipeDetails(recipeInfo, shortRecipeName) {
 // FILTER BY RECIPE TAGS
 function findTags() {
   let tags = [];
+  console.log(tags)
   recipes.forEach(recipe => {
     recipe.tags.forEach(tag => {
       if (!tags.includes(tag)) {
         tags.push(tag);
+        console.log(tags)
       }
     });
   });
@@ -411,9 +398,7 @@ function findRecipesWithCheckedIngredients(selected) {
     }
   })
 }
-function saveUserPantry() {
-  //Whenever the user buys ingredients, we want 
-}
+
 
 
 // const mappedRecipe = recipe.ingredients.map(recipeIngredient => {

@@ -7,7 +7,7 @@ const getIngredientsData = () => {
       return data.ingredientsData;
     })
     .catch(err => console.log(err.message))
-}
+};
 
 const getRecipeData = () => {
   return fetch(`${startingAPItoURL}/recipes/recipeData`)
@@ -16,7 +16,7 @@ const getRecipeData = () => {
       return data.recipeData;
     })
     .catch(err => console.log(err.message))
-}
+};
 
 const getUserData = () => {
   return fetch(`${startingAPItoURL}/users/wcUsersData`)
@@ -25,7 +25,7 @@ const getUserData = () => {
       return data.wcUsersData
     })
     .catch(err => console.log(err.message))
-}
+};
 
 const postUserData = (userData) => {
   return fetch(`${startingAPItoURL}/users/wcUsersData`,{
