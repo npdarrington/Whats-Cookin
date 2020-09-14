@@ -98,7 +98,7 @@ function displayRecipeDetails(recipeInfo, shortRecipeName) {
         </article>
       </article>
       <h4>${recipeInfo.tags[0]}</h4>
-      <img src="../images/apple-logo-outline.png" alt="unfilled apple icon" class="card-apple-icon">
+      <img src="../images/apple-logo-outline.png" alt="unfilled apple icon" class="card-apple-icon" role="button" aria-describedby="Click on this icon to favorite the ${shortRecipeName} recipe." aria-pressed="false">
     </section>`
   main.insertAdjacentHTML("beforeend", cardHtml);
 }
@@ -173,14 +173,16 @@ function hideUnselectedRecipes(foundRecipes) {
 }
 
 // FAVORITE RECIPE FUNCTIONALITY
-function addToMyRecipes() {
+function addToMyRecipes(event) {
   if (event.target.className === "card-apple-icon") {
     let cardId = parseInt(event.target.closest(".recipe-card").id)
     if (!user.favoriteRecipes.includes(cardId)) {
       event.target.src = "../images/apple-logo.png";
+      event.target.setAttribute('aria-pressed', true);
       user.saveRecipe(cardId);
     } else {
       event.target.src = "../images/apple-logo-outline.png";
+      event.target.setAttribute('aria-pressed', false);
       user.removeRecipe(cardId);
     }
   } else if (event.target.id === "exit-recipe-btn") {
