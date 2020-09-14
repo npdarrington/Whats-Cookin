@@ -98,7 +98,7 @@ function displayRecipeDetails(recipeInfo, shortRecipeName) {
         </article>
       </article>
       <h4>${recipeInfo.tags[0]}</h4>
-      <img src="../images/apple-logo-outline.png" alt="unfilled apple icon" class="card-apple-icon" role="button" aria-describedby="Click on this icon to favorite the ${shortRecipeName} recipe." aria-pressed="false">
+      <img src="../images/apple-logo-outline.png" alt="unfilled apple icon" class="card-apple-icon" role="button" aria-describedby="Click on this icon to favorite the ${shortRecipeName} recipe." aria-pressed="false" tabindex="0">
     </section>`
   main.insertAdjacentHTML("beforeend", cardHtml);
 }
