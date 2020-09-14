@@ -25,7 +25,7 @@ class Pantry {
   }
 
   addIngredientsToCook(ingredientsMissing, user){
-    const result = user.pantry.map(userPantryItem => {
+    user.pantry = user.pantry.map(userPantryItem => {
       ingredientsMissing.forEach((ingredient, index) => {
         if(userPantryItem.ingredient === ingredient.id){
           ingredientsMissing.splice(index, 1)
@@ -35,10 +35,8 @@ class Pantry {
       return userPantryItem
     })
     ingredientsMissing.forEach(ingredient => {
-      result.push({ingredient: ingredient.id, amount: ingredient.quantityNeeded})
+      user.pantry.push({ingredient: ingredient.id, amount: ingredient.quantityNeeded})
     })
-    console.log(result)
-    return result
   }
 
   getMissingIngredientsPrice(missingIngredients, ingredientsData) {
