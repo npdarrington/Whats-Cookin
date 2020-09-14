@@ -9,41 +9,41 @@
   </head>
   <body>
     <header>
-      <h1><span>fresh</span>Picks<img src="./images/apple-logo.png" alt="apple icon" class="header-apple-icon"></h1>
-      <form id="search" role="search">
+      <h1><label>fresh</label>Picks<img src="./images/apple-logo.png" alt="apple icon" class="header-apple-icon"></h1>
+      <form id="search" role="search" aria-describedby="This is the search form where you can filter all recipe cards on the website by an ingredient or a recipe name.">
         <input id="search-input" type="text" autocomplete="off" placeholder="Search Recipes..."></input>
-        <label for="search-input" class="search-label">Search</label>
         <button class="nav-btn search-btn" type="button" name="button"><img src="./images/search.png" alt="search button"></button>
+        <label for="search-input" class="search-label">Search</label>
       </form>
-      <button class="nav-btn ing-pan-btn saved-recipes-btn" type="button" name="button"><img src="./images/cookbook.png" alt="search button">My Recipes</button>
-      <button class="nav-btn my-pantry-btn ing-pan-btn saved-ingredients-btn" type="button" name="button"><img src="./images/seasoning.png" alt="search button">My Pantry</button>
+      <button class="nav-btn ing-pan-btn saved-recipes-btn" type="button" name="button"><img src="./images/cookbook.png" alt="search button" aria-describedby="Click on this button to show which recipes you have favorited.">My Recipes</button>
+      <button class="nav-btn my-pantry-btn ing-pan-btn saved-ingredients-btn" type="button" name="button"><img src="./images/seasoning.png" alt="search button" aria-describedby="Click on this button to show the ingredients that you have inside of  your pantry.">My Pantry</button>
     </header>
     <section class="banner-image">
-      <div class="my-recipes-banner">
+      <article class="my-recipes-banner">
         <h1>My Recipes</h1>
         <button class="show-all-btn">Show All Recipes</button>
-      </div>
+      </article>
     </section>
-    <div class="drop-menu">
+    <article class="drop-menu">
       <h2>My Pantry</h2>
       <button class="show-pantry-recipes-btn">What Can I Make?</button>
       <ul class="pantry-list"></ul>
-    </div>
+    </article>
     <aside>
-      <div class="wrap">
+      <article class="wrap">
         <h2>Recipe Type</h2>
         <ul class="tag-list">
         </ul>
         <button class="filter-btn">Filter Recipes</button>
-      </div>
+      </article>
     </aside>
     <main>
-      <div class="recipe-instructions">
-      </div>
-      <div class="my-recipes-banner">
+      <article class="recipe-instructions">
+      </article>
+      <article class="my-recipes-banner">
         <h1>My Recipes</h1>
         <button class="show-all-btn">Show All Recipes</button>
-      </div>
+      </article>
     </main>
   </body>
 </html>
