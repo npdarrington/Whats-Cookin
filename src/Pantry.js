@@ -25,28 +25,21 @@ class Pantry {
   }
 
   addIngredientsToCook(ingredientsMissing, user){
-    ingredientsMissing.map(ingredient => {
-      user.pantry.forEach(pantryItem => {
-        console.log(ingredient.id === pantryItem.id)
-        if(ingredient.id === pantryItem.id){
-        // pantryItem.amount += ingredient.quantityNeeded
-        console.log("this is what we have", pantryItem)
-      } else if (!user.pantry.includes(ingredient)){
-          console.log("this is what we need", ingredient)
-      }
-        })
-      // user.pantry.push(ingredient)
+    const result = user.pantry.map(userPantryItem => {
+      ingredientsMissing.forEach((ingredient, index) => {
+        if(userPantryItem.ingredient === ingredient.id){
+          ingredientsMissing.splice(index, 1)
+          userPantryItem.amount += ingredient.quantityNeeded
+        }
+      })
+      return userPantryItem
     })
+    ingredientsMissing.forEach(ingredient => {
+      result.push({ingredient: ingredient.id, amount: ingredient.quantityNeeded})
+    })
+    console.log(result)
+    return result
   }
-    //we need to add the ingredients that are missing from the user's pantry
-    //if we are missing an ingredient or an ingredient quantity is insufficient, push it into the array of objects
-
-
-
-
-    //for a given recipe, iterate over the required ingredients and compare what is needed to what is in stock
-    //if what is needed is more than what is in stock, add that number to the returned value
-    //return an array of objects, keys ingredient no., value number needed
 
   getMissingIngredientsPrice(missingIngredients, ingredientsData) {
     return missingIngredients.map(missingIngredient => {
@@ -57,7 +50,7 @@ class Pantry {
         return totalAmount;
       }, 0);
       missingIngredient.missingQuantityPrice = (missingQuantityPrice / 100);
-      return missingIngredient;
+       return missingIngredient;
     });
   }
 

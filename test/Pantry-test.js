@@ -42,11 +42,12 @@ describe('Pantry', () => {
 
   it('should add the correct number of ingredients to the pantry whenever a user attempts to cook a recipe w/o ample ingredients', () => {
     const missingIngredients = pantry.getRecipeIngredientsInStock(user, recipeData[0]);
-    expect(pantry.addIngredientsToCook(missingIngredients, user)).to.equal('foo')
+    expect(pantry.addIngredientsToCook(missingIngredients, user)[7]).to.deep.equal({ ingredient: 1123, amount: 100 },
+)
   });
 
   it('should remove the correct number of ingredients from the pantry when a given recipe is cooked', () => {
-    console.log(pantry.getRecipeIngredientsInStock(user, recipeData[0]))
+    // console.log(pantry.getRecipeIngredientsInStock(user, recipeData[0]))
     expect(pantry.getRecipeIngredientsInStock(user, recipeData[0])).to.deep.equal(50000000);
     // it will need to find the ingredient by number within the pantry class and then subtract the correct amount
 
