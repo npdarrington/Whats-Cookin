@@ -5,7 +5,6 @@ class Pantry {
     user.consolidatePantry();
     return user.pantry;
   }
-//consider renaming to reflect what method is actually returning
   getRecipeIngredientsInStock(user, recipe) {
     return recipe.ingredients.reduce((ingredientsMissing, ingredientForRecipe) => {
       let pantryInventory = this.getPantryItems(user);
@@ -55,13 +54,15 @@ class Pantry {
   }
 
   removeCookedIngredients(user, recipe) {
-
-    //we will need two parameters, the user and the recipe being cooked
-    //for the entire recipe, for each ingredient, iterate over the user pantry array, and remove the ingredients and the quantity needed of them to cook the recipe.
-    //if there are not enough ingredients to cook the recipe, alert user
-    //return modified pantry array with decreased ingredient amounts
-    //if the ingredient count is zero, should it remove it totally?
+    user.pantry.forEach(pantryItem => {
+      recipe.ingredients.forEach(ingredient => {
+        if (pantryItem.ingredient === ingredient.id){
+          pantryItem.amount -= ingredient.quantity.amount;
+        }
+      })
+    })
   }
+
   saveUserPantry() {
     //Whenever the user buys ingredients, we want to add to the the ingredient count,
     //whenever the user cooks a recipe, we want to take away from the ingredient count
