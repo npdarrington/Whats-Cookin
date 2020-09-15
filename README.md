@@ -13,7 +13,15 @@ To view the test suite:
 ```
 npm test
 ```
-
+## Technologies Used
+- Vanilla JS
+- HTML
+- CSS/SASS
+- Webpack
+- TDD: Mocha / Chai / Spies
+- NPM
+- Fetch API - GET/POST data to a server
+- GitHub/Git
 ## Wins & Challenges
 ## Contributors
 ## Additional Links
