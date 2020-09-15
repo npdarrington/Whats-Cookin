@@ -85,7 +85,7 @@ function generateUser() {
   findPantryInfo();
 }
 
-// CREATE RECIPE CARDS
+// CREATE RECIPE CARDS --- domUpdater
 function createCards(recipeData) {
   recipeData.forEach(recipe => {
     let recipeInfo = new Recipe(recipe);
@@ -114,7 +114,7 @@ function displayRecipeDetails(recipeInfo, shortRecipeName) {
   main.insertAdjacentHTML("beforeend", cardHtml);
 }
 
-// FILTER BY RECIPE TAGS
+// FILTER BY RECIPE TAGS - domUpdater
 function findTags() {
   let tags = [];
   recipes.forEach(recipe => {
