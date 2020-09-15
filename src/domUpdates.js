@@ -1,12 +1,17 @@
 const domUpdates = {
   user: null,
+  ingredientsData: null,
+  pantryInfo: [],
 
-  assignProperties(user) {
+  assignUser(user) {
     this.user = user
   },
-
+  
+  assignIngredientsData(data) {
+    this.ingredientsData = data
+  },
+  
   generateUser() {
-    console.log(this.user)
     let firstName = this.user.name.split(" ")[0];
     let welcomeMsg = `
       <section class="welcome-msg">
@@ -14,15 +19,16 @@ const domUpdates = {
       </section>`;
     document.querySelector(".banner-image").insertAdjacentHTML("afterbegin",
       welcomeMsg);
-    findPantryInfo();
+    this.findPantryInfo();
   },
 
+  // maybe move these two out of generateUser because they rely on ingredientsData
   findPantryInfo() {
-    user.pantry.forEach(item => {
-      let itemInfo = ingredientsData.find(ingredient => {
+    this.user.pantry.forEach(item => {
+      let itemInfo = this.ingredientsData.find(ingredient => {
         return ingredient.id === item.ingredient;
       });
-      let originalIngredient = pantryInfo.find(ingredient => {
+      let originalIngredient = this.pantryInfo.find(ingredient => {
         if (itemInfo) {
           return ingredient.name === itemInfo.name;
         }
@@ -30,10 +36,10 @@ const domUpdates = {
       if (itemInfo && originalIngredient) {
         originalIngredient.count += item.amount;
       } else if (itemInfo) {
-        pantryInfo.push({name: itemInfo.name, count: item.amount, id: itemInfo.id});
+        this.pantryInfo.push({name: itemInfo.name, count: item.amount, id: itemInfo.id});
       }
     });
-    displayPantryInfo(pantryInfo.sort((a, b) => a.name.localeCompare(b.name)));
+    this.displayPantryInfo(this.pantryInfo.sort((a, b) => a.name.localeCompare(b.name)));
   },
 
   displayPantryInfo(pantry) {

@@ -37,13 +37,21 @@ searchBtn.addEventListener("click", searchRecipes);
 showPantryRecipes.addEventListener("click", findCheckedPantryBoxes);
 searchForm.addEventListener("submit", pressEnterSearch);
 
-let recipes = []
-let pantryInfo = []
-let recipe;
 let user;
+let recipes = []
+let recipe;
 let pantry;
-let ingredientsData;
-let users;
+let ingredientsData; //change this to match other variables
+let users; //do we need this still?
+
+function getIngredientsData() {
+  return fetches.getIngredientsData()
+  .then(data => {
+    ingredientsData = data
+  })
+  .then(() => domUpdates.assignIngredientsData(ingredientsData))
+  .catch(err => console.log(err.message))
+}
 
 function getUserData() {
   return fetches.getUserData()
@@ -51,7 +59,7 @@ function getUserData() {
       users = data
       user = new User(users[Math.floor(Math.random() * users.length)])
     })
-    .then(() => domUpdates.assignProperties(user))
+    .then(() => domUpdates.assignUser(user))
     .then(() => domUpdates.generateUser())
     .catch(err => console.log(err.message))
 }
@@ -66,14 +74,6 @@ function getRecipeData() {
     .catch(err => console.log(err.message))
   }
 
-
-function getIngredientsData() {
-  return fetches.getIngredientsData()
-  .then(data => {
-    ingredientsData = data
-    })
-  .catch(err => console.log(err.message))
-}
 
 // GENERATE A USER ON LOAD
 // function generateUser() {
