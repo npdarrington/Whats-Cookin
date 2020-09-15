@@ -29,8 +29,12 @@ header {
   width: 100%;
 }
 
-.search-input-area {
+.search-bar-section {
   display: flex;
+
+  .search-input-area {
+    width: 90%;
+  }
 
   #search-input {
     background-color: #b6dcca;
@@ -49,12 +53,12 @@ header {
     transition: .8s ease;
   
     &:hover {
-      box-shadow: inset 0px 0px 0px 0px white;
+      box-shadow: $inset-white-box-shadow;
       transition: .8s ease;
     }
   
     &:focus {
-      box-shadow: inset 0px 0px 0px 0px white;
+      box-shadow: $inset-white-box-shadow;
     }
   
     &::placeholder {
@@ -69,22 +73,18 @@ header {
       transition: .8s ease;
     }
   }
-}
 
-.search-input-area {
-  width: 90%;
-}
-
-.search-label-area {
-  display: flex;
-  flex-direction: column;
-  border-left: 3px outset $lemon-lime;
-  width: 10%;
-
-  .search-label {
-    color: white;
-    text-align: center;
-    font-size: 80%;
+  .search-label-area {
+    display: flex;
+    flex-direction: column;
+    border-left: 3px outset $lemon-lime;
+    width: 10%;
+  
+    .search-label {
+      color: white;
+      text-align: center;
+      font-size: 80%;
+    }
   }
 }
 
