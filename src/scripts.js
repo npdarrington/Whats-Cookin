@@ -8,7 +8,6 @@ import Recipe from './recipe';
 
 let allRecipesBtn = document.querySelector(".show-all-btn");
 let filterBtn = document.querySelector(".filter-btn");
-let fullRecipeInfo = document.querySelector(".recipe-instructions");
 let main = document.querySelector("main");
 let menuOpen = false;
 let pantryBtn = document.querySelector(".my-pantry-btn");
@@ -139,16 +138,16 @@ function findTags() {
 function listTags(allTags) {
   allTags.forEach(tag => {
     let tagHtml = `<li><input type="checkbox" class="checked-tag" id="${tag}">
-      <label for="${tag}">${capitalize(tag)}</label></li>`;
+      <label for="${tag}">${domUpdates.capitalize(tag)}</label></li>`;
     tagList.insertAdjacentHTML("beforeend", tagHtml);
   });
 }
 
-function capitalize(words) {
-  return words.split(" ").map(word => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  }).join(" ");
-}
+// function capitalize(words) {
+//   return words.split(" ").map(word => {
+//     return word.charAt(0).toUpperCase() + word.slice(1);
+//   }).join(" ");
+// }
 
 function findCheckedBoxes() {
   let tagCheckboxes = document.querySelectorAll(".checked-tag");
@@ -208,9 +207,9 @@ function addToMyRecipes(event) {
       showSavedRecipes()
     }
   } else if (event.target.id === "exit-recipe-btn") {
-    exitRecipe();
+    domUpdates.exitRecipe();
   } else if (isDescendant(event.target.closest(".recipe-card"), event.target)) {
-    openRecipeInfo(event);
+    domUpdates.openRecipeInfo(event);
   }
 }
 
@@ -287,12 +286,12 @@ function showSavedRecipes() {
 //   fullRecipeInfo.insertAdjacentHTML("beforeend", `<ol>${instructionsList}</ol>`);
 // }
 
-function exitRecipe() {
-  while (fullRecipeInfo.firstChild &&
-    fullRecipeInfo.removeChild(fullRecipeInfo.firstChild));
-  fullRecipeInfo.style.display = "none";
-  document.getElementById("overlay").remove();
-}
+// function exitRecipe() {
+//   while (fullRecipeInfo.firstChild &&
+//     fullRecipeInfo.removeChild(fullRecipeInfo.firstChild));
+//   fullRecipeInfo.style.display = "none";
+//   document.getElementById("overlay").remove();
+// }
 
 // TOGGLE DISPLAYS
 function showMyRecipesBanner() {
