@@ -1,4 +1,22 @@
-# Webpack Starter Kit
+# Can You Smell What's Cookin'?
+
+## Abstract
+### App in Action
+//screenshots and/or gif's here
+## Setup & Installation
+To view and use the application, clone down [this repository](git@github.com:npdarrington/Whats-Cookin.git) and install npm. 
+```
+git clone git@github.com:npdarrington/Whats-Cookin.git
+npm install
+```
+To view the test suite:
+```
+npm test
+```
+
+## Wins & Challenges
+## Contributors
+## Additional Links
 
 ## Clone This Repo
 

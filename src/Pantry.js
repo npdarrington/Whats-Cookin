@@ -39,3 +39,5 @@ class Pantry {
 }
 
 module.exports = Pantry;
+
+// user pantry should now have +76 eggs into eggs, 24 sea salts, 2 choco chips
