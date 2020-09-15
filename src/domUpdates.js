@@ -147,6 +147,27 @@ const domUpdates = {
       fullRecipeInfo.removeChild(fullRecipeInfo.firstChild));
     fullRecipeInfo.style.display = "none";
     document.getElementById("overlay").remove();
+  },
+
+  findTags() {
+    let tags = [];
+    this.recipeData.forEach(recipe => {
+      recipe.tags.forEach(tag => {
+        if (!tags.includes(tag)) {
+          tags.push(tag);
+        }
+      });
+    });
+    tags.sort();
+    this.listTags(tags);
+  },
+  
+  listTags(allTags) {
+    allTags.forEach(tag => {
+      let tagHtml = `<li><input type="checkbox" class="checked-tag" id="${tag}">
+        <label for="${tag}">${domUpdates.capitalize(tag)}</label></li>`;
+      tagList.insertAdjacentHTML("beforeend", tagHtml);
+    });
   }
 
 

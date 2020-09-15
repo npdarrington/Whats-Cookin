@@ -37,7 +37,7 @@ showPantryRecipes.addEventListener("click", findCheckedPantryBoxes);
 searchForm.addEventListener("submit", pressEnterSearch);
 
 let user;
-let ingredientsData; //change this to match other variables
+let ingredientsData;
 let recipeData;
 let recipe;
 let recipes = []
@@ -75,7 +75,7 @@ function getRecipeData() {
     })
     .then(() => domUpdates.assignRecipeData(recipeData))
     .then(() => domUpdates.createCards())
-    .then(() => findTags())
+    .then(() => domUpdates.findTags())
     .catch(err => console.log(err.message))
 }
 
@@ -122,26 +122,26 @@ function getRecipeData() {
 // }
 
 // FILTER BY RECIPE TAGS - domUpdater
-function findTags() {
-  let tags = [];
-  recipes.forEach(recipe => {
-    recipe.tags.forEach(tag => {
-      if (!tags.includes(tag)) {
-        tags.push(tag);
-      }
-    });
-  });
-  tags.sort();
-  listTags(tags);
-}
+// function findTags() {
+//   let tags = [];
+//   recipes.forEach(recipe => {
+//     recipe.tags.forEach(tag => {
+//       if (!tags.includes(tag)) {
+//         tags.push(tag);
+//       }
+//     });
+//   });
+//   tags.sort();
+//   listTags(tags);
+// }
 
-function listTags(allTags) {
-  allTags.forEach(tag => {
-    let tagHtml = `<li><input type="checkbox" class="checked-tag" id="${tag}">
-      <label for="${tag}">${domUpdates.capitalize(tag)}</label></li>`;
-    tagList.insertAdjacentHTML("beforeend", tagHtml);
-  });
-}
+// function listTags(allTags) {
+//   allTags.forEach(tag => {
+//     let tagHtml = `<li><input type="checkbox" class="checked-tag" id="${tag}">
+//       <label for="${tag}">${domUpdates.capitalize(tag)}</label></li>`;
+//     tagList.insertAdjacentHTML("beforeend", tagHtml);
+//   });
+// }
 
 // function capitalize(words) {
 //   return words.split(" ").map(word => {
