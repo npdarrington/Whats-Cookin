@@ -58,7 +58,6 @@ const domUpdates = {
 
   createCards() {
     this.recipeData.forEach(recipe => {
-      // let recipeInfo = new Recipe(recipe);
       let shortRecipeName = recipe.name;
       if (recipe.name.length > 40) {
         shortRecipeName = recipe.name.substring(0, 40) + "...";

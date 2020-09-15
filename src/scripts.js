@@ -69,15 +69,16 @@ function getRecipeData() {
   return fetches.getRecipeData()
     .then(data => {
       recipeData = data
-      recipeData.map(recipe => {
+      recipeData = recipeData.map(recipe => {
         let recipeInfo = new Recipe(recipe)
+        return recipeInfo
       })
     })
     .then(() => domUpdates.assignRecipeData(recipeData))
     .then(() => domUpdates.createCards())
     .then(() => findTags())
     .catch(err => console.log(err.message))
-  }
+}
 
 
 // GENERATE A USER ON LOAD
