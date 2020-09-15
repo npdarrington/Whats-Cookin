@@ -13,7 +13,6 @@ To view the test suite:
 ```
 npm test
 ```
-
 ## Skills 
 - OOP using ES6 classes
 - Array iterator methods/Object methods
@@ -33,8 +32,15 @@ npm test
 - GitHub/Git
 ## Wins & Challenges
 ## Contributors
+- [Ashley McDonald](https://github.com/aemcdonald)
+- [Hanna Kim](https://github.com/hannakim91)
+- [Jeff Woltjen](https://github.com/JWoltjen)
+- [Nathan Darrington](https://github.com/npdarrington)
 ## Additional Links
-
+- [Project Board](https://github.com/npdarrington/Whats-Cookin/projects/1)
+- [Visual planning](https://jamboard.google.com/d/1k-Fsp7zcx3fZqDgq3sIR5eu4ZKydwCJyzZFebz4ChQg/viewer?f=3)
+- [Refactor Specs](https://frontend.turing.io/projects/whats-cookin.html)
+- [Original Project Specs](https://frontend.turing.io/projects/module-2/refactor-tractor-wc.html)
 ## Clone This Repo
 
 That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
