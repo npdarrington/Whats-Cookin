@@ -48,7 +48,6 @@ function getUserData() {
   return fetches.getUserData()
     .then(data => {
       users = data
-      console.log(users)
       user = new User(users[Math.floor(Math.random() * users.length)])
     })
     .then(() => generateUser())
@@ -118,12 +117,10 @@ function displayRecipeDetails(recipeInfo, shortRecipeName) {
 // FILTER BY RECIPE TAGS
 function findTags() {
   let tags = [];
-  console.log(tags)
   recipes.forEach(recipe => {
     recipe.tags.forEach(tag => {
       if (!tags.includes(tag)) {
         tags.push(tag);
-        console.log(tags)
       }
     });
   });
@@ -231,7 +228,6 @@ function openRecipeInfo(event) {
   fullRecipeInfo.style.display = "inline";
   let recipeId = event.path.find(e => e.id).id;
   let recipe = recipes.find(recipe => recipe.id === Number(recipeId));
-  console.log('RECIPE', recipe)
   generateRecipeTitle(recipe, generateIngredients(recipe));
   addRecipeImage(recipe);
   generateInstructions(recipe);
@@ -385,8 +381,8 @@ function findCheckedPantryBoxes() {
 
 function findRecipesWithCheckedIngredients(selected) {
 
-  let recipeChecker = (arr, target) => target.every(v => arr.includes(v));
-  let ingredientNames = selected.map(item => {
+  let recipeChecker = (arr, target) => target.find(v => arr.includes(v));
+  let ingredientIds = selected.map(item => {
     return +item.id;
   })
   recipes.forEach(recipe => {
@@ -394,8 +390,7 @@ function findRecipesWithCheckedIngredients(selected) {
     recipe.ingredients.forEach(ingredient => {
       allRecipeIngredients.push(ingredient.id);
     });
-    console.log(ingredientNames)
-    if (!recipeChecker(allRecipeIngredients, ingredientNames)) {
+    if (!recipeChecker(allRecipeIngredients, ingredientIds)) {
       let domRecipe = document.getElementById(`${recipe.id}`);
       domRecipe.style.display = "none";
     }
