@@ -4,11 +4,11 @@ header {
   grid-area: header;
   padding: 0% 0%;
   width: 100%;
-}
 
-span {
-  color: $lemon-lime;
-  font-weight: 400;
+  label {
+    color: $lemon-lime;
+    font-weight: 400;
+  }
 }
 
 .header-apple-icon {
@@ -68,7 +68,7 @@ span {
 }
 
 .search-label {
-  display: none;
+  color: white;
 }
 
 .search-btn {

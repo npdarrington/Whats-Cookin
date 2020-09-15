@@ -77,9 +77,9 @@ function getIngredientsData() {
 function generateUser() {
   let firstName = user.name.split(" ")[0];
   let welcomeMsg = `
-    <div class="welcome-msg">
+    <section class="welcome-msg">
       <h1>Welcome ${firstName}!</h1>
-    </div>`;
+    </section>`;
   document.querySelector(".banner-image").insertAdjacentHTML("afterbegin",
     welcomeMsg);
   findPantryInfo();
@@ -100,17 +100,17 @@ function createCards(recipeData) {
 
 function displayRecipeDetails(recipeInfo, shortRecipeName) {
   let cardHtml = `
-    <div class="recipe-card" id=${recipeInfo.id}>
+    <section class="recipe-card" id=${recipeInfo.id}>
       <h3 maxlength="40">${shortRecipeName}</h3>
-      <div class="card-photo-container">
+      <article class="card-photo-container">
         <img src=${recipeInfo.image} class="card-photo-preview" alt="${recipeInfo.name} recipe" title="${recipeInfo.name} recipe">
-        <div class="text">
-          <div>Click for Instructions</div>
-        </div>
-      </div>
+        <article class="text">
+          <label>Click for Instructions</label>
+        </article>
+      </article>
       <h4>${recipeInfo.tags[0]}</h4>
-      <img src="../images/apple-logo-outline.png" alt="unfilled apple icon" class="card-apple-icon">
-    </div>`
+      <img src="../images/apple-logo-outline.png" alt="unfilled apple icon" class="card-apple-icon" role="button" aria-describedby="Click on this icon to favorite the ${shortRecipeName} recipe." aria-pressed="false" tabindex="0">
+    </section>`
   main.insertAdjacentHTML("beforeend", cardHtml);
 }
 
@@ -184,17 +184,17 @@ function hideUnselectedRecipes(foundRecipes) {
 }
 
 // FAVORITE RECIPE FUNCTIONALITY
-function addToMyRecipes() {
+function addToMyRecipes(event) {
   if (event.target.className === "card-apple-icon") {
     let cardId = parseInt(event.target.closest(".recipe-card").id)
     if (!user.favoriteRecipes.includes(cardId)) {
       event.target.src = "../images/apple-logo.png";
+      event.target.setAttribute('aria-pressed', true);
       user.saveRecipe(cardId);
       console.log(user.favoriteRecipes)
     } else {
       event.target.src = "../images/apple-logo-outline.png";
-      // console.log(user.removeRecipe(cardId))
-      console.log(user.favoriteRecipes)
+      event.target.setAttribute('aria-pressed', false);
       user.removeRecipe(cardId);
       console.log(user.favoriteRecipes)
       showSavedRecipes()
@@ -236,7 +236,7 @@ function openRecipeInfo(event) {
   generateRecipeTitle(recipe, generateIngredients(recipe));
   addRecipeImage(recipe);
   generateInstructions(recipe);
-  fullRecipeInfo.insertAdjacentHTML("beforebegin", "<section id='overlay'></div>");
+  fullRecipeInfo.insertAdjacentHTML("beforebegin", "<section id='overlay'></section>");
 }
 
 function generateRecipeTitle(recipe, ingredients) {
@@ -329,8 +329,10 @@ function toggleMenu() {
   menuOpen = !menuOpen;
   if (menuOpen) {
     menuDropdown.style.display = "block";
+    pantryBtn.setAttribute('aria-expanded', true);
   } else {
     menuDropdown.style.display = "none";
+    pantryBtn.setAttribute('aria-expanded', false);
   }
 }
 
