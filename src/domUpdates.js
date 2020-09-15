@@ -1,7 +1,13 @@
 const domUpdates = {
-  
+  user: null,
+
+  assignProperties(user) {
+    this.user = user
+  },
+
   generateUser() {
-    let firstName = user.name.split(" ")[0];
+    console.log(this.user)
+    let firstName = this.user.name.split(" ")[0];
     let welcomeMsg = `
       <section class="welcome-msg">
         <h1>Welcome ${firstName}!</h1>
