@@ -190,9 +190,14 @@ function addToMyRecipes() {
     if (!user.favoriteRecipes.includes(cardId)) {
       event.target.src = "../images/apple-logo.png";
       user.saveRecipe(cardId);
+      console.log(user.favoriteRecipes)
     } else {
       event.target.src = "../images/apple-logo-outline.png";
+      // console.log(user.removeRecipe(cardId))
+      console.log(user.favoriteRecipes)
       user.removeRecipe(cardId);
+      console.log(user.favoriteRecipes)
+      showSavedRecipes()
     }
   } else if (event.target.id === "exit-recipe-btn") {
     exitRecipe();

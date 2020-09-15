@@ -11,9 +11,9 @@ class User {
     this.favoriteRecipes.push(recipe);
   }
 
-  removeRecipe(recipeLocation, recipe) {
-    let recipeIndex = this[recipeLocation].indexOf(recipe);
-    this[recipeLocation].splice(recipeIndex, 1);
+  removeRecipe(recipe) {
+    let recipeIndex = this.favoriteRecipes.indexOf(recipe);
+    this.favoriteRecipes.splice(recipeIndex, 1);
   }
 
   decideToCook(recipe) {
