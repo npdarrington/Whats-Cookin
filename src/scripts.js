@@ -1,9 +1,9 @@
 import './css/styles.scss';
 import './index.js';
-import Pantry from './Pantry';
 import User from './user';
+import Pantry from './Pantry';
 import Recipe from './recipe';
-import fetchData from './fetch';
+import fetches from './fetch';
 
 let allRecipesBtn = document.querySelector(".show-all-btn");
 let filterBtn = document.querySelector(".filter-btn");
@@ -18,10 +18,15 @@ let searchInput = document.querySelector("#search-input");
 let showPantryRecipes = document.querySelector(".show-pantry-recipes-btn");
 let tagList = document.querySelector(".tag-list");
 
-window.addEventListener('load', getFetchData);
+window.addEventListener('load', function () {
+  getIngredientsData()
+  getUserData()
+  getRecipeData();
+})
 // window.addEventListener("load", createCards);
 // window.addEventListener("load", findTags);
 // window.addEventListener("load", generateUser);
+
 allRecipesBtn.addEventListener("click", showAllRecipes);
 filterBtn.addEventListener("click", findCheckedBoxes);
 main.addEventListener("click", addToMyRecipes);
@@ -39,30 +44,37 @@ let pantry;
 let ingredientsData;
 let users;
 
-function getFetchData() {
-  return fetchData()
+function getUserData() {
+  return fetches.getUserData()
     .then(data => {
-      console.log(data)
-      users = data.userData
+      users = data
       user = new User(users[Math.floor(Math.random() * users.length)])
-      recipes = data.recipeData
-      ingredientsData = data.ingredientsData
     })
     .then(() => generateUser())
-    .then(() => createCards(recipes))
-    .then(() => findTags())
-    // need to resolve whole page of data in this method
     .catch(err => console.log(err.message))
 }
 
-function displayInitialDom() {
-  generateUser()
-  createCards()
-  findTags()
+function getRecipeData() {
+  return fetches.getRecipeData()
+    .then(data => {
+      recipe = data
+    })
+    .then(() => createCards(recipe))
+    .then(() => findTags())
+    .catch(err => console.log(err.message))
+  }
+
+
+function getIngredientsData() {
+  return fetches.getIngredientsData()
+  .then(data => {
+    ingredientsData = data
+    })
+  .catch(err => console.log(err.message))
 }
+
 // GENERATE A USER ON LOAD
 function generateUser() {
-  // user = new User(users[Math.floor(Math.random() * users.length)]);
   let firstName = user.name.split(" ")[0];
   let welcomeMsg = `
     <section class="welcome-msg">
@@ -77,7 +89,6 @@ function generateUser() {
 function createCards(recipeData) {
   recipeData.forEach(recipe => {
     let recipeInfo = new Recipe(recipe);
-    console.log(recipeInfo)
     let shortRecipeName = recipeInfo.name;
     recipes.push(recipeInfo);
     if (recipeInfo.name.length > 40) {
@@ -180,10 +191,13 @@ function addToMyRecipes(event) {
       event.target.src = "../images/apple-logo.png";
       event.target.setAttribute('aria-pressed', true);
       user.saveRecipe(cardId);
+      console.log(user.favoriteRecipes)
     } else {
       event.target.src = "../images/apple-logo-outline.png";
       event.target.setAttribute('aria-pressed', false);
       user.removeRecipe(cardId);
+      console.log(user.favoriteRecipes)
+      showSavedRecipes()
     }
   } else if (event.target.id === "exit-recipe-btn") {
     exitRecipe();
@@ -219,7 +233,6 @@ function openRecipeInfo(event) {
   fullRecipeInfo.style.display = "inline";
   let recipeId = event.path.find(e => e.id).id;
   let recipe = recipes.find(recipe => recipe.id === Number(recipeId));
-  console.log('RECIPE', recipe)
   generateRecipeTitle(recipe, generateIngredients(recipe));
   addRecipeImage(recipe);
   generateInstructions(recipe);
@@ -375,8 +388,8 @@ function findCheckedPantryBoxes() {
 
 function findRecipesWithCheckedIngredients(selected) {
 
-  let recipeChecker = (arr, target) => target.every(v => arr.includes(v));
-  let ingredientNames = selected.map(item => {
+  let recipeChecker = (arr, target) => target.find(v => arr.includes(v));
+  let ingredientIds = selected.map(item => {
     return +item.id;
   })
   recipes.forEach(recipe => {
@@ -384,13 +397,14 @@ function findRecipesWithCheckedIngredients(selected) {
     recipe.ingredients.forEach(ingredient => {
       allRecipeIngredients.push(ingredient.id);
     });
-    console.log(ingredientNames)
-    if (!recipeChecker(allRecipeIngredients, ingredientNames)) {
+    if (!recipeChecker(allRecipeIngredients, ingredientIds)) {
       let domRecipe = document.getElementById(`${recipe.id}`);
       domRecipe.style.display = "none";
     }
   })
 }
+
+
 
 // const mappedRecipe = recipe.ingredients.map(recipeIngredient => {
 //   ingredientsData.forEach(ingredient => {
