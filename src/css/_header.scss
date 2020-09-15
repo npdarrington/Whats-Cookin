@@ -9,6 +9,18 @@ header {
     color: $lemon-lime;
     font-weight: 400;
   }
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+    h1 {
+      justify-content: center;
+      display: flex;
+      align-items: center;
+    }
+  }
 }
 
 .header-apple-icon {
