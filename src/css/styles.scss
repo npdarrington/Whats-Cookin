@@ -21,8 +21,12 @@ body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: auto;
-}
 
+  @media screen and (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 /* BANNER IMAGE*/
 .banner-image {
