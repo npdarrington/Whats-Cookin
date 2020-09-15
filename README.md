@@ -13,14 +13,23 @@ To view the test suite:
 ```
 npm test
 ```
+
+## Skills 
+- OOP using ES6 classes
+- Array iterator methods/Object methods
+- Test Driven Development - designing an application by testing first and pseudo-coding before coding functionality
+- Accessibility - following ARIA guidelines to provide seamless tabbing for screen readers and choosing a color scheme that accommodates for colorblindness
+- Group workflow using a project board, concise commits, linking commits/PR's to issues, automated PR template, and documented code review
+- Refactoring existing code base by following SRP and DRY principles and using newer technologies
 ## Technologies Used
 - Vanilla JS
 - HTML
 - CSS/SASS
 - Webpack
-- TDD: Mocha / Chai / Spies
+- Mocha framework
+- Chai library with Spies plug-in for DOM testing
 - NPM
-- Fetch API - GET/POST data to a server
+- Fetch API to GET/POST data to a server
 - GitHub/Git
 ## Wins & Challenges
 ## Contributors
