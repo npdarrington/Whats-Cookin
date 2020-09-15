@@ -398,7 +398,7 @@ function findRecipesWithCheckedIngredients(selected) {
   let ingredientIds = selected.map(item => {
     return +item.id;
   })
-  recipes.forEach(recipe => {
+  domUpdates.recipeData.forEach(recipe => {
     let allRecipeIngredients = [];
     recipe.ingredients.forEach(ingredient => {
       allRecipeIngredients.push(ingredient.id);
