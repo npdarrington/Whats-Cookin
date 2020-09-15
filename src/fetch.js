@@ -1,38 +1,49 @@
-//fetching 3 times, then promise.all resolves redundancies -- storing fetched data as obj properties(allData)
-//return in allData?
+const startingAPItoURL = 'https://fe-apps.herokuapp.com/api/v1/whats-cookin/1911'
 
-// instead: start with Promise.all, two thens, and a catch
-
-
-function fetchData() {
-  let ingredientsData = fetch('https://fe-apps.herokuapp.com/api/v1/whats-cookin/1911/ingredients/ingredientsData')
+const getIngredientsData = () => {
+  return fetch(`${startingAPItoURL}/ingredients/ingredientsData`)
     .then(response => response.json())
     .then(data => {
       return data.ingredientsData;
     })
     .catch(err => console.log(err.message))
+};
 
-  let recipeData = fetch('https://fe-apps.herokuapp.com/api/v1/whats-cookin/1911/recipes/recipeData')
+const getRecipeData = () => {
+  return fetch(`${startingAPItoURL}/recipes/recipeData`)
     .then(response => response.json())
     .then(data => {
       return data.recipeData;
     })
     .catch(err => console.log(err.message))
+};
 
-  let userData = fetch('https://fe-apps.herokuapp.com/api/v1/whats-cookin/1911/users/wcUsersData')
+const getUserData = () => {
+  return fetch(`${startingAPItoURL}/users/wcUsersData`)
     .then(response => response.json())
     .then(data => {
       return data.wcUsersData
     })
     .catch(err => console.log(err.message))
+};
 
-  return Promise.all([ingredientsData, recipeData, userData])
-    .then(data => {
-      let allData = {};
-      allData.ingredientsData = data[0];
-      allData.recipeData = data[1];
-      allData.userData = data[2];
-      return allData
+const postUserData = (userData) => {
+  return fetch(`${startingAPItoURL}/users/wcUsersData`,{
+    method: 'POST',
+    body: JSON.stringify(userData),
+    headers: {
+      'content-type': 'application/json',
+    },
+  })
+    .then(response => response.json())
+    .then(responseJson => {
+      return responseJson;
     });
+};
+
+export default {
+ getIngredientsData,
+ getRecipeData,
+ getUserData,
+ postUserData
 }
-export default fetchData;
