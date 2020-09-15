@@ -31,6 +31,17 @@ npm test
 - Fetch API to GET/POST data to a server
 - GitHub/Git
 ## Wins & Challenges
+### Challenges
+- Writing our tests based the wrong data -- in hindsight, we should have checked the API data supplied before writing new tests and methods. We learned later in the process that API datasets differed from original project's repo data and could have saved time with functionality that was unneeded (RIP `User.marioCondoMyPantry`)
+- Using API data that can be modified by multiple developers (both within our group and other students in the class). We're all learning how to use API data for the first time, so data was sometimes altered in ways that might not work with how our class methods were written.
+### Wins
+- Tackling complicated logic involving multiple datasets.
+- Learning how to taking advantage of Webpack features to consolidate our files into one neat bundle. We found that while everything doesn't have to be linked through a `html scripts` tag, the correct files must be linked in `index.js` and a chosen entry point (`scripts.js`) before deployment.
+- Using `Fetch` to `GET` and `POST` data to a server.
+- Deciding (not) to use inheritance - while this is a new feature we learned during this module, we felt that it did not offer enough advantages to be applicable for how we structured our classes.
+
+
+
 ## Contributors
 - [Ashley McDonald](https://github.com/aemcdonald)
 - [Hanna Kim](https://github.com/hannakim91)
