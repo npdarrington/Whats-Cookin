@@ -29,52 +29,63 @@ header {
   width: 100%;
 }
 
-#search-input {
-  background-color: #b6dcca;
-  background: -webkit-gradient( linear,left top, left bottom, color-stop(0, rgb(255, 255, 255)), color-stop(1, rgb(225,225,225)));
-  border-radius: 10px 0px 0px 10px;
-  border: none;
-  box-shadow: inset -3px -1px 20px 1px #5c7894;
-  color: $grey-blue-background-color;
-  font-family: "Quicksand", sans-serif;
-  font-size: 42px;
-  height: 100%;
-  outline: none;
-  padding: 0% 2% 0% 0%;
-  text-align: right;
-  transition: .8s ease;
-  width: 100%;
+.search-input-area {
+  display: flex;
 
-  &:hover {
-    box-shadow: inset 0px 0px 0px 0px white;
-    transition: .8s ease;
-  }
-
-  &:focus {
-    box-shadow: inset 0px 0px 0px 0px white;
-  }
-
-  &::placeholder {
+  #search-input {
+    background-color: #b6dcca;
+    background: -webkit-gradient( linear,left top, left bottom, color-stop(0, rgb(255, 255, 255)), color-stop(1, rgb(225,225,225)));
+    border-radius: 10px 0px 0px 10px;
+    border: none;
+    box-shadow: inset -3px -1px 20px 1px #5c7894;
     color: $grey-blue-background-color;
-    font-size: 20px;
+    font-family: "Quicksand", sans-serif;
+    font-size: 42px;
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding: 0% 2% 0% 0%;
     text-align: right;
-    text-shadow: none;
-  }
-
-  &:focus::placeholder {
-    font-size: 0px;
     transition: .8s ease;
+  
+    &:hover {
+      box-shadow: inset 0px 0px 0px 0px white;
+      transition: .8s ease;
+    }
+  
+    &:focus {
+      box-shadow: inset 0px 0px 0px 0px white;
+    }
+  
+    &::placeholder {
+      color: $grey-blue-background-color;
+      font-size: 20px;
+      text-align: right;
+      text-shadow: none;
+    }
+  
+    &:focus::placeholder {
+      font-size: 0px;
+      transition: .8s ease;
+    }
   }
 }
 
-.search-label {
-  color: white;
+.search-input-area {
+  width: 90%;
 }
 
-.search-btn {
+.search-label-area {
+  display: flex;
+  flex-direction: column;
   border-left: 3px outset $lemon-lime;
-  border-radius: 0px 15px 15px 0px;
-  padding: 1%;
+  width: 10%;
+
+  .search-label {
+    color: white;
+    text-align: center;
+    font-size: 80%;
+  }
 }
 
 .nav-btn {
