@@ -163,6 +163,7 @@ const domUpdates = {
   },
   
   listTags(allTags) {
+    let tagList = document.querySelector(".tag-list");
     allTags.forEach(tag => {
       let tagHtml = `<li><input type="checkbox" class="checked-tag" id="${tag}">
         <label for="${tag}">${domUpdates.capitalize(tag)}</label></li>`;
