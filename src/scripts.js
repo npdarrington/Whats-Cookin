@@ -1,7 +1,7 @@
 import './css/styles.scss';
 import './index.js';
-import Pantry from './Pantry';
 import User from './user';
+import Pantry from './Pantry';
 import Recipe from './recipe';
 import fetches from './fetch';
 
@@ -19,8 +19,8 @@ let showPantryRecipes = document.querySelector(".show-pantry-recipes-btn");
 let tagList = document.querySelector(".tag-list");
 
 window.addEventListener('load', function () {
-  getUserData()
   getIngredientsData()
+  getUserData()
   getRecipeData();
 })
 // window.addEventListener("load", createCards);
@@ -48,6 +48,7 @@ function getUserData() {
   return fetches.getUserData()
     .then(data => {
       users = data
+      console.log(users)
       user = new User(users[Math.floor(Math.random() * users.length)])
     })
     .then(() => generateUser())
@@ -60,14 +61,16 @@ function getRecipeData() {
       recipe = data
     })
     .then(() => createCards(recipe))
-}
+    .then(() => findTags())
+    .catch(err => console.log(err.message))
+  }
+
 
 function getIngredientsData() {
   return fetches.getIngredientsData()
   .then(data => {
     ingredientsData = data
-  })
-  .then(() => findTags())
+    })
   .catch(err => console.log(err.message))
 }
 
