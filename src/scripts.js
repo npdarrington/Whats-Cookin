@@ -160,7 +160,7 @@ function findCheckedBoxes() {
 function findTaggedRecipes(selected) {
   let filteredResults = [];
   selected.forEach(tag => {
-    let allRecipes = recipes.filter(recipe => {
+    let allRecipes = domUpdates.recipeData.filter(recipe => {
       return recipe.tags.includes(tag.id);
     });
     allRecipes.forEach(recipe => {
@@ -176,7 +176,7 @@ function findTaggedRecipes(selected) {
 }
 
 function filterRecipes(filtered) {
-  let foundRecipes = recipes.filter(recipe => {
+  let foundRecipes = domUpdates.recipeData.filter(recipe => {
     return !filtered.includes(recipe);
   });
   hideUnselectedRecipes(foundRecipes)
@@ -224,7 +224,7 @@ function isDescendant(parent, child) {
 }
 
 function showSavedRecipes() {
-  let unsavedRecipes = recipes.filter(recipe => {
+  let unsavedRecipes = domUpdates.recipeData.filter(recipe => {
     return !user.favoriteRecipes.includes(recipe.id);
   });
   unsavedRecipes.forEach(recipe => {
@@ -343,7 +343,7 @@ function toggleMenu() {
 }
 
 function showAllRecipes() {
-  recipes.forEach(recipe => {
+  domUpdates.recipeData.forEach(recipe => {
     let domRecipe = document.getElementById(`${recipe.id}`);
     domRecipe.style.display = "block";
   });
