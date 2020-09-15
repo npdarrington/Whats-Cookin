@@ -73,3 +73,4 @@ class Pantry {
   }
 }
 module.exports = Pantry;
+// change to export default Pantry;
