@@ -4,7 +4,7 @@ import User from './user';
 import Pantry from './Pantry';
 import Recipe from './recipe';
 import fetches from './fetch';
-import domUpdates from '.domUpdates';
+import domUpdates from './domUpdates';
 
 let allRecipesBtn = document.querySelector(".show-all-btn");
 let filterBtn = document.querySelector(".filter-btn");
@@ -51,7 +51,7 @@ function getUserData() {
       users = data
       user = new User(users[Math.floor(Math.random() * users.length)])
     })
-    .then(() => generateUser())
+    .then(() => domUpdates.generateUser())
     .catch(err => console.log(err.message))
 }
 
@@ -75,16 +75,16 @@ function getIngredientsData() {
 }
 
 // GENERATE A USER ON LOAD
-function generateUser() {
-  let firstName = user.name.split(" ")[0];
-  let welcomeMsg = `
-    <section class="welcome-msg">
-      <h1>Welcome ${firstName}!</h1>
-    </section>`;
-  document.querySelector(".banner-image").insertAdjacentHTML("afterbegin",
-    welcomeMsg);
-  findPantryInfo();
-}
+// function generateUser() {
+//   let firstName = user.name.split(" ")[0];
+//   let welcomeMsg = `
+//     <section class="welcome-msg">
+//       <h1>Welcome ${firstName}!</h1>
+//     </section>`;
+//   document.querySelector(".banner-image").insertAdjacentHTML("afterbegin",
+//     welcomeMsg);
+//   findPantryInfo();
+// }
 
 // CREATE RECIPE CARDS --- domUpdater
 function createCards(recipeData) {
@@ -346,34 +346,34 @@ function showAllRecipes() {
 }
 
 // CREATE AND USE PANTRY -- MAY NEED TO BE REWRITTEN*** display portion -- sort before display, not during
-function findPantryInfo() {
-  user.pantry.forEach(item => {
-    let itemInfo = ingredientsData.find(ingredient => {
-      return ingredient.id === item.ingredient;
-    });
-    let originalIngredient = pantryInfo.find(ingredient => {
-      if (itemInfo) {
-        return ingredient.name === itemInfo.name;
-      }
-    });
-    if (itemInfo && originalIngredient) {
-      originalIngredient.count += item.amount;
-    } else if (itemInfo) {
-      pantryInfo.push({name: itemInfo.name, count: item.amount, id: itemInfo.id});
-    }
-  });
-  displayPantryInfo(pantryInfo.sort((a, b) => a.name.localeCompare(b.name)));
-}
+// function findPantryInfo() {
+//   user.pantry.forEach(item => {
+//     let itemInfo = ingredientsData.find(ingredient => {
+//       return ingredient.id === item.ingredient;
+//     });
+//     let originalIngredient = pantryInfo.find(ingredient => {
+//       if (itemInfo) {
+//         return ingredient.name === itemInfo.name;
+//       }
+//     });
+//     if (itemInfo && originalIngredient) {
+//       originalIngredient.count += item.amount;
+//     } else if (itemInfo) {
+//       pantryInfo.push({name: itemInfo.name, count: item.amount, id: itemInfo.id});
+//     }
+//   });
+//   displayPantryInfo(pantryInfo.sort((a, b) => a.name.localeCompare(b.name)));
+// }
 
-function displayPantryInfo(pantry) {
-  //*** pantry = DOM pantry with just name and #
-  pantry.forEach(ingredient => {
-    let ingredientHtml = `<li><input type="checkbox" class="pantry-checkbox" id="${ingredient.id}">
-      <label for="${ingredient.name}">${ingredient.name}, ${ingredient.count}</label></li>`;
-    document.querySelector(".pantry-list").insertAdjacentHTML("beforeend",
-      ingredientHtml);
-  });
-}
+// function displayPantryInfo(pantry) {
+//   //*** pantry = DOM pantry with just name and #
+//   pantry.forEach(ingredient => {
+//     let ingredientHtml = `<li><input type="checkbox" class="pantry-checkbox" id="${ingredient.id}">
+//       <label for="${ingredient.name}">${ingredient.name}, ${ingredient.count}</label></li>`;
+//     document.querySelector(".pantry-list").insertAdjacentHTML("beforeend",
+//       ingredientHtml);
+//   });
+// }
 
 function findCheckedPantryBoxes() {
   let pantryCheckboxes = document.querySelectorAll(".pantry-checkbox");
