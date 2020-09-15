@@ -31,6 +31,7 @@ header {
 
 .search-bar-section {
   display: flex;
+  width: 100%;
 
   .search-input-area {
     width: 90%;
@@ -45,10 +46,9 @@ header {
     color: $grey-blue-background-color;
     font-family: "Quicksand", sans-serif;
     font-size: 42px;
-    height: 100%;
     width: 100%;
+    height: 97%;
     outline: none;
-    padding: 0% 2% 0% 0%;
     text-align: right;
     transition: .8s ease;
   
