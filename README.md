@@ -1,6 +1,10 @@
 # Can You Smell What's Cookin'?
 
 ## Abstract
+FreshPicks is a card UI recipe application where users can view and filter recipes based on factors such as their existing pantry ingredients, recipe type. Users can also add recipes to a list of their favorite recipes, which allows users to "*shop*" for missing ingredients and "*cook*" a recipe, which removes any ingredients used.
+
+Refactor existing codebase for the app using technologies such as API Fetch, SASS, and Webpack...
+built with JS... 
 ### App in Action
 //screenshots and/or gif's here
 ## Setup & Installation
