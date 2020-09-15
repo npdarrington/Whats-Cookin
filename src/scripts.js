@@ -4,6 +4,7 @@ import User from './user';
 import Pantry from './Pantry';
 import Recipe from './recipe';
 import fetches from './fetch';
+import domUpdates from '.domUpdates';
 
 let allRecipesBtn = document.querySelector(".show-all-btn");
 let filterBtn = document.querySelector(".filter-btn");
