@@ -1,7 +1,8 @@
 const domUpdates = {
-  user: null,
   ingredientsData: null,
+  user: null,
   pantryInfo: [],
+  recipeData: null,
 
   assignUser(user) {
     this.user = user
@@ -9,6 +10,10 @@ const domUpdates = {
   
   assignIngredientsData(data) {
     this.ingredientsData = data
+  },
+
+  assignRecipeData(data) {
+    this.recipeData = data
   },
   
   generateUser() {
@@ -22,7 +27,6 @@ const domUpdates = {
     this.findPantryInfo();
   },
 
-  // maybe move these two out of generateUser because they rely on ingredientsData
   findPantryInfo() {
     this.user.pantry.forEach(item => {
       let itemInfo = this.ingredientsData.find(ingredient => {
@@ -50,7 +54,37 @@ const domUpdates = {
       document.querySelector(".pantry-list").insertAdjacentHTML("beforeend",
         ingredientHtml);
     });
+  },
+
+  createCards() {
+    this.recipeData.forEach(recipe => {
+      // let recipeInfo = new Recipe(recipe);
+      let shortRecipeName = recipe.name;
+      if (recipe.name.length > 40) {
+        shortRecipeName = recipe.name.substring(0, 40) + "...";
+      }
+      this.displayRecipeDetails(recipe, shortRecipeName)
+    });
+  },
+
+  displayRecipeDetails(recipeInfo, shortRecipeName) {
+    let main = document.querySelector("main");
+    let cardHtml = `
+      <section class="recipe-card" id=${recipeInfo.id}>
+        <h3 maxlength="40">${shortRecipeName}</h3>
+        <article class="card-photo-container">
+          <img src=${recipeInfo.image} class="card-photo-preview" alt="${recipeInfo.name} recipe" title="${recipeInfo.name} recipe">
+          <article class="text">
+            <label>Click for Instructions</label>
+          </article>
+        </article>
+        <h4>${recipeInfo.tags[0]}</h4>
+        <img src="../images/apple-logo-outline.png" alt="unfilled apple icon" class="card-apple-icon" role="button" aria-describedby="Click on this icon to favorite the ${shortRecipeName} recipe." aria-pressed="false" tabindex="0">
+      </section>`
+    main.insertAdjacentHTML("beforeend", cardHtml);
   }
+
+
 }
 
 export default domUpdates;

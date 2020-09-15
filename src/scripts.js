@@ -38,19 +38,20 @@ showPantryRecipes.addEventListener("click", findCheckedPantryBoxes);
 searchForm.addEventListener("submit", pressEnterSearch);
 
 let user;
-let recipes = []
-let recipe;
-let pantry;
 let ingredientsData; //change this to match other variables
+let recipeData;
+let recipe;
+let recipes = []
+let pantry;
 let users; //do we need this still?
 
 function getIngredientsData() {
   return fetches.getIngredientsData()
-  .then(data => {
-    ingredientsData = data
-  })
-  .then(() => domUpdates.assignIngredientsData(ingredientsData))
-  .catch(err => console.log(err.message))
+    .then(data => {
+      ingredientsData = data
+    })
+    .then(() => domUpdates.assignIngredientsData(ingredientsData))
+    .catch(err => console.log(err.message))
 }
 
 function getUserData() {
@@ -67,9 +68,13 @@ function getUserData() {
 function getRecipeData() {
   return fetches.getRecipeData()
     .then(data => {
-      recipe = data
+      recipeData = data
+      recipeData.map(recipe => {
+        let recipeInfo = new Recipe(recipe)
+      })
     })
-    .then(() => createCards(recipe))
+    .then(() => domUpdates.assignRecipeData(recipeData))
+    .then(() => domUpdates.createCards())
     .then(() => findTags())
     .catch(err => console.log(err.message))
   }
@@ -88,33 +93,33 @@ function getRecipeData() {
 // }
 
 // CREATE RECIPE CARDS --- domUpdater
-function createCards(recipeData) {
-  recipeData.forEach(recipe => {
-    let recipeInfo = new Recipe(recipe);
-    let shortRecipeName = recipeInfo.name;
-    recipes.push(recipeInfo);
-    if (recipeInfo.name.length > 40) {
-      shortRecipeName = recipeInfo.name.substring(0, 40) + "...";
-    }
-    displayRecipeDetails(recipeInfo, shortRecipeName)
-  });
-}
+// function createCards(recipeData) {
+//   recipeData.forEach(recipe => {
+//     let recipeInfo = new Recipe(recipe);
+//     let shortRecipeName = recipeInfo.name;
+//     recipes.push(recipeInfo);
+//     if (recipeInfo.name.length > 40) {
+//       shortRecipeName = recipeInfo.name.substring(0, 40) + "...";
+//     }
+//     displayRecipeDetails(recipeInfo, shortRecipeName)
+//   });
+// }
 
-function displayRecipeDetails(recipeInfo, shortRecipeName) {
-  let cardHtml = `
-    <section class="recipe-card" id=${recipeInfo.id}>
-      <h3 maxlength="40">${shortRecipeName}</h3>
-      <article class="card-photo-container">
-        <img src=${recipeInfo.image} class="card-photo-preview" alt="${recipeInfo.name} recipe" title="${recipeInfo.name} recipe">
-        <article class="text">
-          <label>Click for Instructions</label>
-        </article>
-      </article>
-      <h4>${recipeInfo.tags[0]}</h4>
-      <img src="../images/apple-logo-outline.png" alt="unfilled apple icon" class="card-apple-icon" role="button" aria-describedby="Click on this icon to favorite the ${shortRecipeName} recipe." aria-pressed="false" tabindex="0">
-    </section>`
-  main.insertAdjacentHTML("beforeend", cardHtml);
-}
+// function displayRecipeDetails(recipeInfo, shortRecipeName) {
+//   let cardHtml = `
+//     <section class="recipe-card" id=${recipeInfo.id}>
+//       <h3 maxlength="40">${shortRecipeName}</h3>
+//       <article class="card-photo-container">
+//         <img src=${recipeInfo.image} class="card-photo-preview" alt="${recipeInfo.name} recipe" title="${recipeInfo.name} recipe">
+//         <article class="text">
+//           <label>Click for Instructions</label>
+//         </article>
+//       </article>
+//       <h4>${recipeInfo.tags[0]}</h4>
+//       <img src="../images/apple-logo-outline.png" alt="unfilled apple icon" class="card-apple-icon" role="button" aria-describedby="Click on this icon to favorite the ${shortRecipeName} recipe." aria-pressed="false" tabindex="0">
+//     </section>`
+//   main.insertAdjacentHTML("beforeend", cardHtml);
+// }
 
 // FILTER BY RECIPE TAGS - domUpdater
 function findTags() {
