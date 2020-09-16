@@ -23,8 +23,12 @@ body {
   -webkit-font-smoothing: auto;
 
   @media screen and (max-width: 700px) {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "header"
+      "image"
+      "aside"
+      "main";
     min-width: 350px;
   }
 }
