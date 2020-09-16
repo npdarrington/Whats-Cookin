@@ -42,7 +42,6 @@ header {
 
   @media screen and (max-width: 700px) {
     width: 80%;
-    // height: 40px;
   }
 }
 
@@ -149,4 +148,23 @@ header {
 .ing-pan-btn {
   margin: 1% 0%;
   padding: 1px 6px 5px 0px;
+}
+
+.right-nav-buttons {
+  
+  
+  @media screen and (max-width: 700px) {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+
+    .saved-ingredients-btn {
+      width: 70px;
+    }
+
+    .ing-pan-btn {
+      width: 70px;
+    }
+  }
 }
