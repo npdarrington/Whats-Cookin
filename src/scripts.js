@@ -309,6 +309,7 @@ function pressEnterSearch(event) {
   searchRecipes();
 }
 
+//can only search by pieces of recipe name -- not tag or ingredient yet
 function searchRecipes() {
   showAllRecipes();
   let searchedRecipes = domUpdates.recipeData.filter(recipe => {
