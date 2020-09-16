@@ -1,10 +1,8 @@
 .drop-menu {
-  align-items: center;
   background-color: #DAE4EE;
   display: none;
-  height: 600px;
-  margin-left: 81%;
-  margin-top: 92px;
+  right: 0px;
+  margin-top: 90px;
   overflow: scroll;
   padding: 12px;
   position: absolute;
@@ -16,7 +14,12 @@
     color: $mint-green;
     margin: 0px;
   }
+
+  @media screen and (max-width: 700px) {
+    margin-top: 212px; 
+  }
 }
+
 .pantry-list {
   color: black;
   padding-left: 15px;
