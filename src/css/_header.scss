@@ -1,6 +1,7 @@
 header {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   grid-area: header;
   padding: 0% 0%;
   width: 100%;
@@ -19,6 +20,21 @@ header {
       display: flex;
       align-items: center;
     }
+  }
+}
+
+.company-label {
+  display: flex;
+  margin-left: 20px;
+
+  h1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 700px) {
+    margin-left: 90px; 
   }
 }
 
@@ -42,6 +58,11 @@ header {
   @media screen and (max-width: 700px) {
     width: 80%;
   }
+}
+
+.search-bar-form {
+  display: flex;
+  justify-content: center;
 }
 
 .search-bar-section {
@@ -140,6 +161,14 @@ header {
   }
 }
 
+.search-tags-btn {
+  display: none;
+
+  @media screen and (max-width: 700px) {
+    display: inline;  
+  }
+}
+
 .saved-ingredients-btn, .search-tags-btn {
   border-left: 3px solid $lemon-lime;
 }
@@ -147,10 +176,13 @@ header {
 .ing-pan-btn {
   margin: 1% 0%;
   padding: 1px 6px 5px 0px;
+  width: 70px;
 }
 
 .right-nav-buttons {
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
   @media screen and (max-width: 700px) {
     display: flex;
