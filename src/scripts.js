@@ -74,16 +74,6 @@ function getRecipeData() {
     .catch(err => console.log(err.message))
 }
 
-// function postUserData(userData) {
-//   return fetch(pantry.removeCookedIngredients(user, recipe))//users/wcUsersData`,{
-//   method: 'POST',
-//   body: JSON.stringify(userData),
-//   headers: {
-//     'content-type': 'application/json',
-//   }
-//   .then(response => ))
-// }
-
 function findCheckedBoxes() {
   let tagCheckboxes = document.querySelectorAll(".checked-tag");
   let checkboxInfo = Array.from(tagCheckboxes)
@@ -133,12 +123,10 @@ function addToMyRecipes(event) {
       event.target.src = "../images/apple-logo.png";
       event.target.setAttribute('aria-pressed', true);
       user.saveRecipe(cardId);
-      console.log(user.favoriteRecipes)
     } else {
       event.target.src = "../images/apple-logo-outline.png";
       event.target.setAttribute('aria-pressed', false);
       user.removeRecipe(cardId);
-      console.log(user.favoriteRecipes)
       showSavedRecipes()
     }
   }else if (event.target.id === "cook-recipe-btn"){
@@ -151,26 +139,15 @@ function addToMyRecipes(event) {
 }
 function cookRecipe(event) {
   const recipeId = (+event.target.closest('.recipe-card').id)
-  console.log(recipeId)
     const pantry = new Pantry()
     const matchRecipeId = domUpdates.recipeData.find(recipe => {
       return (recipeId === recipe.id)
     })
-    console.log(matchRecipeId)
-    console.log("before", domUpdates.user.pantry)
   let ingredientsMissing = pantry.getRecipeIngredientsInStock(domUpdates.user, matchRecipeId)
     pantry.addIngredientsToCook(ingredientsMissing, domUpdates.user)
     pantry.removeCookedIngredients(domUpdates.user, matchRecipeId)
-    console.log("after", domUpdates.user.pantry)
+    // fetches.postUserData(domUpdates.user)
 }
-
-//if target.id does not work because button doesn't generate onload, consider PARENTNODE
-// this will be an event targeting handler type function
-// when a user clicks the open recipe button, it will add an event target to the cook recipe button
-// when the user clicks the cook recipe button, two things will happen:
-// the pantry will add ingredients that are missing to the pantry--will this require a fetch call?
-// the pantry will remove all ingredients necessary to cook the recipe
-// the user will then post the updated pantry information to the server
 
 function isDescendant(parent, child) {
   let node = child;

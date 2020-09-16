@@ -172,16 +172,6 @@ const domUpdates = {
       tagList.insertAdjacentHTML("beforeend", tagHtml);
     });
   }
-
-
 }
 
 export default domUpdates;
-
-//anything that populates DOM
-
-//what would still be in scripts?
-//imports
-//event listeners
-// fetch and dom update calls hooked onto event listener
-//things that rely on user interaction
