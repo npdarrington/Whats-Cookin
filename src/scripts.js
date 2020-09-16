@@ -37,7 +37,6 @@ let ingredientsData;
 let recipeData;
 let recipe;
 let recipes = []
-let pantry;
 let users;
 
 function getIngredientsData() {
@@ -146,8 +145,27 @@ function addToMyRecipes(event) {
     domUpdates.exitRecipe();
   } else if (isDescendant(event.target.closest(".recipe-card"), event.target)) {
     domUpdates.openRecipeInfo(event);
+  } else if (event.target.id === "cook-recipe-btn"){
+    cookRecipe()
   }
 }
+function cookRecipe(event) {
+  console.log(domUpdates.user)
+    const pantry = new Pantry()
+    console.log("before", domUpdates.user.pantry)
+    pantry.getRecipeIngredientsInStock(domUpdates.user, recipe)
+    pantry.addIngredientsToCook(ingredientsMissing, domUpdates.user)
+    pantry.removeCookedIngredients()
+console.log("after", domUpdates.user.pantry)
+}
+
+//if target.id does not work because button doesn't generate onload, consider PARENTNODE
+// this will be an event targeting handler type function
+// when a user clicks the open recipe button, it will add an event target to the cook recipe button
+// when the user clicks the cook recipe button, two things will happen:
+// the pantry will add ingredients that are missing to the pantry--will this require a fetch call?
+// the pantry will remove all ingredients necessary to cook the recipe
+// the user will then post the updated pantry information to the server
 
 function isDescendant(parent, child) {
   let node = child;

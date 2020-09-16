@@ -79,6 +79,7 @@ const domUpdates = {
         </article>
         <h4>${recipeInfo.tags[0]}</h4>
         <img src="../images/apple-logo-outline.png" alt="unfilled apple icon" class="card-apple-icon" role="button" aria-describedby="Click on this icon to favorite the ${shortRecipeName} recipe." aria-pressed="false" tabindex="0">
+        <button id=cook-recipe-btn>Cook recipe</button>
       </section>`
 
     main.insertAdjacentHTML("beforeend", cardHtml);
@@ -87,8 +88,10 @@ const domUpdates = {
   openRecipeInfo(event) {
     let fullRecipeInfo = document.querySelector(".recipe-instructions");
     fullRecipeInfo.style.display = "inline";
-    let recipeId = event.path.find(e => e.id).id;
+    let recipeId = event.target.closest('.recipe-card').id
+    console.log(recipeId)
     let recipe = this.recipeData.find(recipe => recipe.id === Number(recipeId));
+    console.log(recipe)
     this.generateRecipeTitle(recipe, this.generateIngredients(recipe));
     this.addRecipeImage(recipe);
     this.generateInstructions(recipe);
@@ -140,7 +143,7 @@ const domUpdates = {
       instructionsList += `<li>${i}</li>`
     });
     fullRecipeInfo.insertAdjacentHTML("beforeend", "<h4>Instructions</h4>");
-    fullRecipeInfo.insertAdjacentHTML("beforeend", `<ol>${instructionsList}</ol><button id=cook-recipe-btn>Cook recipe</button>`);
+    fullRecipeInfo.insertAdjacentHTML("beforeend", `<ol>${instructionsList}</ol>`);
   },
 
   exitRecipe() {
