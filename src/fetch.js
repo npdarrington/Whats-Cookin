@@ -42,8 +42,8 @@ const postUserData = (userData) => {
 };
 
 export default {
- getIngredientsData,
- getRecipeData,
- getUserData,
- postUserData
+  getIngredientsData,
+  getRecipeData,
+  getUserData,
+  postUserData
 }

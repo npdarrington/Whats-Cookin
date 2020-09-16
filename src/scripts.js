@@ -311,14 +311,14 @@ function pressEnterSearch(event) {
 
 function searchRecipes() {
   showAllRecipes();
-  let searchedRecipes = recipes.filter(recipe => {
+  let searchedRecipes = domUpdates.recipeData.filter(recipe => {
     return recipe.name.toLowerCase().includes(searchInput.value.toLowerCase());
   });
   filterNonSearched(createRecipeObject(searchedRecipes));
 }
 
 function filterNonSearched(filtered) {
-  let found = recipes.filter(recipe => {
+  let found = domUpdates.recipeData.filter(recipe => {
     let ids = filtered.map(f => f.id);
     return !ids.includes(recipe.id)
   })
