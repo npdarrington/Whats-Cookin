@@ -5,6 +5,7 @@ main {
   align-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
+  overflow: scroll;
 }
 
 .recipe-card {
