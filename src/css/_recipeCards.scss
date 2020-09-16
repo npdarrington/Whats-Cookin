@@ -13,30 +13,29 @@ main {
   border-radius: 7px;
   cursor: pointer;
   height: 270px;
+  width: 250px;
   margin: 20px;
   padding: 15px;
-  width: 250px;
-}
 
-.recipe-card:hover .card-photo-preview {
-  opacity: 50%;
-  transition: .8s ease;
-}
+  &:hover .card-photo-preview {
+    opacity: 50%;
+    transition: .8s ease;
+  }
 
-.recipe-card:hover .text {
-  font-size: 20px;
-  opacity: 100%;
-  transition: .5s ease;
-  width: 100%;
-}
+  &:hover .text {
+    font-size: 20px;
+    opacity: 100%;
+    transition: .5s ease;
+    width: 100%;
+  }
 
-.recipe-card:hover h3 {
-  text-shadow: 0px 0px 4px $lemon-lime;
-  transition: .8s ease;
+  &:hover h3 {
+    text-shadow: 0px 0px 4px $lemon-lime;
+    transition: .8s ease;
+  }
 }
 
 .card-apple-icon {
-  cursor: pointer;
   float: right;
   height: 50px;
   padding-bottom: 10px;
@@ -48,9 +47,7 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 7px;
-  cursor: pointer;
   height: 130px;
-  transition: .8s ease;
   width: 100%;
 }
 
@@ -66,11 +63,7 @@ main {
   background: $mint-green;
   color: white;
   font-weight: 700;
-  font-size: 0px;
   opacity: 0%;
-  padding: 0%;
   position: absolute;
   text-align: center;
-  width: 0%;
-  transition: .5s ease;
 }
