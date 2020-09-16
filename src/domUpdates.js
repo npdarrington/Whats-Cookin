@@ -4,8 +4,8 @@ const domUpdates = {
   pantryInfo: [],
   recipeData: null,
 
-  assignUser(user) {
-    this.user = user
+  assignUser(data) {
+    this.user = data
   },
   
   assignIngredientsData(data) {
