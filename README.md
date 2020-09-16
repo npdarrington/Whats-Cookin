@@ -13,9 +13,9 @@ In this project, we refactored an existing code base and ensured that all functi
 
 ### App in Action
 //screenshots and/or gif's here
-![Filter Recipes GIF](http:g//recordit.co/1b386ahBlT.gif)
-![Favorite Recipes GIF](http:g//recordit.co/HS5wkBCq6A.gif)
-![Search Recipes by Name GIF](http:g//recordit.co/1iAFzw1Zba.gif)
+![Filter Recipes GIF](http://g.recordit.co/1b386ahBlT.gif)
+![Favorite Recipes GIF](http://g.recordit.co/HS5wkBCq6A.gif)
+![Search Recipes by Name GIF](http://g.recordit.co/1iAFzw1Zba.gif)
 ## Setup & Installation
 To view and use the application, clone down [this repository](git@github.com:npdarrington/Whats-Cookin.git) and install npm.
 ```
