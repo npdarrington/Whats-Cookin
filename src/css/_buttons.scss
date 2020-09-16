@@ -31,26 +31,3 @@
 .filter-btn:hover {
   background-color: $button-hover-color;
 }
-
-// .menu-button {
-//   @include hamburger-menu();
-// }
-
-// .menu-button-burger {
-//   @include hamburger-menu-button();
-
-//   &::before,
-//   &::after {
-//     content: '';
-//     position: absolute;
-//     @include hamburger-menu-button();
-//   }
-
-//   &::before {
-//     transform: translateY(-10px);
-//   }
-
-//   &::after {
-//     transform: translateY(10px);
-//   }
-// }
