@@ -141,22 +141,27 @@ function addToMyRecipes(event) {
       console.log(user.favoriteRecipes)
       showSavedRecipes()
     }
-  } else if (event.target.id === "exit-recipe-btn") {
+  }else if (event.target.id === "cook-recipe-btn"){
+    cookRecipe(event);
+  }else if (event.target.id === "exit-recipe-btn") {
     domUpdates.exitRecipe();
   } else if (isDescendant(event.target.closest(".recipe-card"), event.target)) {
     domUpdates.openRecipeInfo(event);
-  } else if (event.target.id === "cook-recipe-btn"){
-    cookRecipe()
   }
 }
 function cookRecipe(event) {
-  console.log(domUpdates.user)
+  const recipeId = (+event.target.closest('.recipe-card').id)
+  console.log(recipeId)
     const pantry = new Pantry()
+    const matchRecipeId = domUpdates.recipeData.find(recipe => {
+      return (recipeId === recipe.id)
+    })
+    console.log(matchRecipeId)
     console.log("before", domUpdates.user.pantry)
-    pantry.getRecipeIngredientsInStock(domUpdates.user, recipe)
+  let ingredientsMissing = pantry.getRecipeIngredientsInStock(domUpdates.user, matchRecipeId)
     pantry.addIngredientsToCook(ingredientsMissing, domUpdates.user)
-    pantry.removeCookedIngredients()
-console.log("after", domUpdates.user.pantry)
+    pantry.removeCookedIngredients(domUpdates.user, matchRecipeId)
+    console.log("after", domUpdates.user.pantry)
 }
 
 //if target.id does not work because button doesn't generate onload, consider PARENTNODE

@@ -89,14 +89,11 @@ const domUpdates = {
     let fullRecipeInfo = document.querySelector(".recipe-instructions");
     fullRecipeInfo.style.display = "inline";
     let recipeId = event.target.closest('.recipe-card').id
-    console.log(recipeId)
     let recipe = this.recipeData.find(recipe => recipe.id === Number(recipeId));
-    console.log(recipe)
     this.generateRecipeTitle(recipe, this.generateIngredients(recipe));
     this.addRecipeImage(recipe);
     this.generateInstructions(recipe);
     fullRecipeInfo.insertAdjacentHTML("beforebegin", "<section id='overlay'></section>");
-
   },
 
   generateRecipeTitle(recipe, ingredients) {
