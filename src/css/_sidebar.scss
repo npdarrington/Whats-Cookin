@@ -19,7 +19,8 @@ aside {
   }
 
   @media screen and (max-width: 700px) {
-    display: none;
+    justify-content: center;
+    width: 100%;
   }
 }
 
