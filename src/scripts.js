@@ -39,8 +39,7 @@ let ingredientsData;
 let recipeData;
 let recipe;
 let recipes = []
-let pantry;
-let users; //do we need this still?
+let users;
 
 function getIngredientsData() {
   return fetches.getIngredientsData()
@@ -126,19 +125,30 @@ function addToMyRecipes(event) {
       event.target.src = "../images/apple-logo.png";
       event.target.setAttribute('aria-pressed', true);
       user.saveRecipe(cardId);
-      console.log(user.favoriteRecipes)
     } else {
       event.target.src = "../images/apple-logo-outline.png";
       event.target.setAttribute('aria-pressed', false);
       user.removeRecipe(cardId);
-      console.log(user.favoriteRecipes)
       showSavedRecipes()
     }
-  } else if (event.target.id === "exit-recipe-btn") {
+  }else if (event.target.id === "cook-recipe-btn"){
+    cookRecipe(event);
+  }else if (event.target.id === "exit-recipe-btn") {
     domUpdates.exitRecipe();
   } else if (isDescendant(event.target.closest(".recipe-card"), event.target)) {
     domUpdates.openRecipeInfo(event);
   }
+}
+function cookRecipe(event) {
+  const recipeId = (+event.target.closest('.recipe-card').id)
+    const pantry = new Pantry()
+    const matchRecipeId = domUpdates.recipeData.find(recipe => {
+      return (recipeId === recipe.id)
+    })
+  let ingredientsMissing = pantry.getRecipeIngredientsInStock(domUpdates.user, matchRecipeId)
+    pantry.addIngredientsToCook(ingredientsMissing, domUpdates.user)
+    pantry.removeCookedIngredients(domUpdates.user, matchRecipeId)
+    // fetches.postUserData(domUpdates.user)
 }
 
 function isDescendant(parent, child) {
@@ -232,7 +242,6 @@ function findCheckedPantryBoxes() {
 }
 
 function findRecipesWithCheckedIngredients(selected) {
-
   let recipeChecker = (arr, target) => target.find(v => arr.includes(v));
   let ingredientIds = selected.map(item => {
     return +item.id;

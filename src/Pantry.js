@@ -62,15 +62,6 @@ class Pantry {
       })
     })
   }
-  saveUserPantry() {
-    //Whenever the user buys ingredients, we want to add to the the ingredient count,
-    //whenever the user cooks a recipe, we want to take away from the ingredient count
-    //to remove ingredients, we want to post the updated count to the server so that it
-    //will persist onload; same with when we want to add ingredients.
-    //whenever there is a change, run this function.
-    //when we run find necessary ingredients, we want to transfer the count to this function, then POST
-    //
-  }
 }
+
 module.exports = Pantry;
-// change to export default Pantry;
