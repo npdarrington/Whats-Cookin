@@ -16,6 +16,7 @@ let searchBtn = document.querySelector(".search-btn");
 let searchForm = document.querySelector("#search");
 let searchInput = document.querySelector("#search-input");
 let showPantryRecipes = document.querySelector(".show-pantry-recipes-btn");
+let showTagsBtn = document.querySelector(".search-tags-btn");
 
 window.addEventListener('load', function () {
   getIngredientsData()
@@ -33,6 +34,7 @@ pantryBtn.addEventListener("click", toggleMenu);
 savedRecipesBtn.addEventListener("click", showSavedRecipes);
 searchBtn.addEventListener("click", searchRecipes);
 showPantryRecipes.addEventListener("click", findCheckedPantryBoxes);
+showTagsBtn.addEventListener("click", toggleTagsOnMobile);
 searchForm.addEventListener("submit", pressEnterSearch);
 
 let user;
@@ -409,6 +411,11 @@ function findRecipesWithCheckedIngredients(selected) {
       domRecipe.style.display = "none";
     }
   })
+}
+
+function toggleTagsOnMobile() {
+  let tagsElement = document.querySelector('aside');
+  tagsElement.classList.toggle('hidden');
 }
 
 
