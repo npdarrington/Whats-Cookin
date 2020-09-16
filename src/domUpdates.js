@@ -86,7 +86,7 @@ const domUpdates = {
   openRecipeInfo(event) {
     let fullRecipeInfo = document.querySelector(".recipe-instructions");
     fullRecipeInfo.style.display = "inline";
-    let recipeId = event.path.find(e => e.id).id;
+    let recipeId = event.target.id;
     let recipe = this.recipeData.find(recipe => recipe.id === Number(recipeId));
     this.generateRecipeTitle(recipe, this.generateIngredients(recipe));
     this.addRecipeImage(recipe);
