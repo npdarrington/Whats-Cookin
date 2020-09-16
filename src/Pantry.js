@@ -23,19 +23,19 @@ class Pantry {
     }, []);
   }
 
-  addIngredientsToCook(ingredientsMissing, user){
+  addIngredientsToCook(ingredientsMissing, user) {
     user.pantry = user.pantry.map(userPantryItem => {
       ingredientsMissing.forEach((ingredient, index) => {
-        if(userPantryItem.ingredient === ingredient.id){
+        if (userPantryItem.ingredient === ingredient.id) {
           ingredientsMissing.splice(index, 1)
           userPantryItem.amount += ingredient.quantityNeeded
         }
       })
       return userPantryItem
     })
-    if (ingredientsMissing.length !== 0){
-    ingredientsMissing.forEach(ingredient => {
-      user.pantry.push({ingredient: ingredient.id, amount: ingredient.quantityNeeded})
+    if (ingredientsMissing.length !== 0) {
+      ingredientsMissing.forEach(ingredient => {
+        user.pantry.push({ingredient: ingredient.id, amount: ingredient.quantityNeeded})
       })
     }
   }
@@ -49,14 +49,14 @@ class Pantry {
         return totalAmount;
       }, 0);
       missingIngredient.missingQuantityPrice = (missingQuantityPrice / 100);
-       return missingIngredient;
+      return missingIngredient;
     });
   }
 
   removeCookedIngredients(user, recipe) {
     user.pantry.forEach(pantryItem => {
       recipe.ingredients.forEach(ingredient => {
-        if (pantryItem.ingredient === ingredient.id){
+        if (pantryItem.ingredient === ingredient.id) {
           pantryItem.amount -= ingredient.quantity.amount;
         }
       })
@@ -73,3 +73,4 @@ class Pantry {
   }
 }
 module.exports = Pantry;
+// change to export default Pantry;
