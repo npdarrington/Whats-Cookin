@@ -11,15 +11,15 @@
   text-align: center;
   width: 250px;
   z-index: 3;
-}
 
-.drop-menu h2 {
-  color: $mint-green;
-  margin: 0px;
+  h2 {
+    color: $mint-green;
+    margin: 0px;
+  }
 }
-
 .pantry-list {
   color: black;
   padding-left: 15px;
   text-align: left;
+  list-style: none;
 }
