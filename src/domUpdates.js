@@ -7,7 +7,7 @@ const domUpdates = {
   assignUser(data) {
     this.user = data
   },
-  
+
   assignIngredientsData(data) {
     this.ingredientsData = data
   },
@@ -15,7 +15,7 @@ const domUpdates = {
   assignRecipeData(data) {
     this.recipeData = data
   },
-  
+
   generateUser() {
     let firstName = this.user.name.split(" ")[0];
     let welcomeMsg = `
@@ -79,21 +79,23 @@ const domUpdates = {
         </article>
         <h4>${recipeInfo.tags[0]}</h4>
         <img src="../images/apple-logo-outline.png" alt="unfilled apple icon" class="card-apple-icon" role="button" aria-describedby="Click on this icon to favorite the ${shortRecipeName} recipe." aria-pressed="false" tabindex="0">
+        <button id=cook-recipe-btn>Cook recipe</button>
       </section>`
+
     main.insertAdjacentHTML("beforeend", cardHtml);
   },
 
   openRecipeInfo(event) {
     let fullRecipeInfo = document.querySelector(".recipe-instructions");
     fullRecipeInfo.style.display = "inline";
-    let recipeId = event.path.find(e => e.id).id;
+    let recipeId = event.target.closest('.recipe-card').id
     let recipe = this.recipeData.find(recipe => recipe.id === Number(recipeId));
     this.generateRecipeTitle(recipe, this.generateIngredients(recipe));
     this.addRecipeImage(recipe);
     this.generateInstructions(recipe);
     fullRecipeInfo.insertAdjacentHTML("beforebegin", "<section id='overlay'></section>");
   },
-  
+
   generateRecipeTitle(recipe, ingredients) {
     let fullRecipeInfo = document.querySelector(".recipe-instructions");
     let recipeTitle = `
@@ -103,11 +105,11 @@ const domUpdates = {
       <p>${ingredients}</p>`
     fullRecipeInfo.insertAdjacentHTML("beforeend", recipeTitle);
   },
-  
+
   addRecipeImage(recipe) {
     document.getElementById("recipe-title").style.backgroundImage = `url(${recipe.image})`;
   },
-  
+
   capitalize(words) {
     return words.split(" ").map(word => {
       return word.charAt(0).toUpperCase() + word.slice(1);
@@ -127,7 +129,7 @@ const domUpdates = {
       return `${this.capitalize(i.name)} (${i.quantity.amount} ${i.quantity.unit})`
     }).join(", ");
   },
-  
+
   generateInstructions(recipe) {
     let fullRecipeInfo = document.querySelector(".recipe-instructions");
     let instructionsList = "";
@@ -161,7 +163,7 @@ const domUpdates = {
     tags.sort();
     this.listTags(tags);
   },
-  
+
   listTags(allTags) {
     let tagList = document.querySelector(".tag-list");
     allTags.forEach(tag => {
@@ -170,16 +172,6 @@ const domUpdates = {
       tagList.insertAdjacentHTML("beforeend", tagHtml);
     });
   }
-
-
 }
 
 export default domUpdates;
-
-//anything that populates DOM
-
-//what would still be in scripts? 
-//imports
-//event listeners
-// fetch and dom update calls hooked onto event listener
-//things that rely on user interaction

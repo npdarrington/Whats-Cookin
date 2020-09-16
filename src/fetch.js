@@ -27,23 +27,29 @@ const getUserData = () => {
     .catch(err => console.log(err.message))
 };
 
-const postUserData = (userData) => {
-  return fetch(`${startingAPItoURL}/users/wcUsersData`,{
-    method: 'POST',
-    body: JSON.stringify(userData),
-    headers: {
-      'content-type': 'application/json',
-    },
-  })
-    .then(response => response.json())
-    .then(responseJson => {
-      return responseJson;
-    });
-};
+// const postUserData = (userData) => {
+//   console.log(userData.id)
+//   const init = {
+//   "userID": userData.id,
+//   "ingredientID": userData.pantry
+//   "ingredientModification":
+// }
+//   fetch(`${startingAPItoURL}/users/wcUsersData`, {
+//     method: 'POST',
+//     body: JSON.stringify(init),
+//     headers: {
+//       'content-type': 'application/json',
+//     },
+//   })
+//     .then(response => response.json())
+//     .then(responseJson => {
+//       return responseJson;
+//     });
+
 
 export default {
   getIngredientsData,
   getRecipeData,
   getUserData,
-  postUserData
+  // postUserData
 }
