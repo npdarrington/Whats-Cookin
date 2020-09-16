@@ -1409,7 +1409,7 @@ let recipeData = [
       },
       {
         "number": 5,
-        "instruction": "Serve with more Baby Rays BBQ Sauce... and pickles"
+        "instruction": "Serve with more KC Masterpiece BBQ Sauce... and pickles"
       }
     ],
     "tags": [
