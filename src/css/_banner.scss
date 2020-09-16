@@ -1,0 +1,28 @@
+.banner-image {
+  background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),url("../images/green-apples.jpg");
+  grid-area: image;
+  height: 150px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.my-recipes-banner,
+.welcome-msg {
+  text-align: center;
+  width: 95%;
+}
+
+.my-recipes-banner h1,
+.welcome-msg h1 {
+  color: white;
+  width: 100%;
+}
+
+.my-recipes-banner {
+  display: none;
+  margin-top: 25px;
+}
+
+.welcome-msg {
+  margin-top: 50px;
+}
