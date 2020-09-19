@@ -16,6 +16,7 @@ let searchBtn = document.querySelector(".search-btn");
 let searchForm = document.querySelector("#search");
 let searchInput = document.querySelector("#search-input");
 let showPantryRecipes = document.querySelector(".show-pantry-recipes-btn");
+let showTagsBtn = document.querySelector(".search-tags-btn");
 
 window.addEventListener('load', function () {
   getIngredientsData()
@@ -30,6 +31,7 @@ pantryBtn.addEventListener("click", toggleMenu);
 savedRecipesBtn.addEventListener("click", showSavedRecipes);
 searchBtn.addEventListener("click", searchRecipes);
 showPantryRecipes.addEventListener("click", findCheckedPantryBoxes);
+showTagsBtn.addEventListener("click", toggleTagsOnMobile);
 searchForm.addEventListener("submit", pressEnterSearch);
 
 let user;
@@ -171,7 +173,6 @@ function showSavedRecipes() {
   showMyRecipesBanner();
 }
 
-// TOGGLE DISPLAYS
 function showMyRecipesBanner() {
   document.querySelector(".welcome-msg").style.display = "none";
   document.querySelector(".my-recipes-banner").style.display = "block";
@@ -182,13 +183,11 @@ function showWelcomeBanner() {
   document.querySelector(".my-recipes-banner").style.display = "none";
 }
 
-// SEARCH RECIPES
 function pressEnterSearch(event) {
   event.preventDefault();
   searchRecipes();
 }
 
-//can only search by pieces of recipe name -- not tag or ingredient yet
 function searchRecipes() {
   showAllRecipes();
   let searchedRecipes = domUpdates.recipeData.filter(recipe => {
@@ -257,4 +256,9 @@ function findRecipesWithCheckedIngredients(selected) {
       domRecipe.style.display = "none";
     }
   })
+}
+
+function toggleTagsOnMobile() {
+  let tagsElement = document.querySelector('aside');
+  tagsElement.classList.toggle('hidden');
 }

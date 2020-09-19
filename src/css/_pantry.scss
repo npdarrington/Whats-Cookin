@@ -1,25 +1,28 @@
 .drop-menu {
-  align-items: center;
   background-color: #DAE4EE;
   display: none;
-  height: 600px;
-  margin-left: 81%;
-  margin-top: 92px;
+  right: 0px;
+  margin-top: 90px;
   overflow: scroll;
   padding: 12px;
   position: absolute;
   text-align: center;
   width: 250px;
   z-index: 3;
-}
 
-.drop-menu h2 {
-  color: $mint-green;
-  margin: 0px;
+  h2 {
+    color: $mint-green;
+    margin: 0px;
+  }
+
+  @media screen and (max-width: 700px) {
+    margin-top: 250px; 
+  }
 }
 
 .pantry-list {
   color: black;
   padding-left: 15px;
   text-align: left;
+  list-style: none;
 }

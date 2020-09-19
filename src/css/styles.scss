@@ -1,12 +1,12 @@
 @import './_variables.scss';
 @import './_text.scss';
 @import './_header.scss';
+@import './_banner.scss';
 @import './_sidebar.scss';
 @import './_recipeCards.scss';
 @import './_buttons.scss';
 @import './_pantry.scss';
 @import './_recipeInstructions.scss';
-
 
 body {
   background-color: $grey-blue-background-color;
@@ -21,35 +21,18 @@ body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: auto;
+
+  @media screen and (max-width: 700px) {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "header"
+      "image"
+      "aside"
+      "main";
+    min-width: 350px;
+  }
 }
 
-
-/* BANNER IMAGE*/
-.banner-image {
-  background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),url("../images/green-apples.jpg");
-  grid-area: image;
-  height: 150px;
-  overflow: hidden;
-  width: 100%;
-}
-
-.my-recipes-banner,
-.welcome-msg {
-  text-align: center;
-  width: 95%;
-}
-
-.my-recipes-banner h1,
-.welcome-msg h1 {
-  color: white;
-  width: 100%;
-}
-
-.my-recipes-banner {
+.hidden {
   display: none;
-  margin-top: 25px;
-}
-
-.welcome-msg {
-  margin-top: 50px;
 }

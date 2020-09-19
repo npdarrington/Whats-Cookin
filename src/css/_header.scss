@@ -1,6 +1,7 @@
 header {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   grid-area: header;
   padding: 0% 0%;
   width: 100%;
@@ -8,6 +9,32 @@ header {
   label {
     color: $lemon-lime;
     font-weight: 400;
+  }
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      justify-content: center;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.company-label {
+  display: flex;
+  margin-left: 20px;
+
+  h1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 700px) {
+    margin-left: 90px; 
   }
 }
 
@@ -27,54 +54,80 @@ header {
   justify-content: center;
   margin: 1.2% 0.5% 1.2% 0%;
   width: 100%;
+
+  @media screen and (max-width: 700px) {
+    width: 80%;
+  }
 }
 
-#search-input {
-  background-color: #b6dcca;
-  background: -webkit-gradient( linear,left top, left bottom, color-stop(0, rgb(255, 255, 255)), color-stop(1, rgb(225,225,225)));
-  border-radius: 10px 0px 0px 10px;
-  border: none;
-  box-shadow: inset -3px -1px 20px 1px #5c7894;
-  color: $grey-blue-background-color;
-  font-family: "Quicksand", sans-serif;
-  font-size: 42px;
-  height: 100%;
-  outline: none;
-  padding: 0% 2% 0% 0%;
-  text-align: right;
-  transition: .8s ease;
+.search-bar-form {
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar-section {
+  display: flex;
   width: 100%;
+  height: 60px;
 
-  &:hover {
-    box-shadow: inset 0px 0px 0px 0px white;
-    transition: .8s ease;
+  .search-input-area {
+    width: 90%;
   }
 
-  &:focus {
-    box-shadow: inset 0px 0px 0px 0px white;
-  }
-
-  &::placeholder {
+  #search-input {
+    background-color: #b6dcca;
+    background: -webkit-gradient( linear,left top, left bottom, color-stop(0, rgb(255, 255, 255)), color-stop(1, rgb(225,225,225)));
+    border-radius: 10px 0px 0px 10px;
+    border: none;
+    box-shadow: inset -3px -1px 20px 1px #5c7894;
     color: $grey-blue-background-color;
-    font-size: 20px;
+    font-family: "Quicksand", sans-serif;
+    font-size: 42px;
+    width: 100%;
+    height: 97%;
+    outline: none;
     text-align: right;
-    text-shadow: none;
-  }
-
-  &:focus::placeholder {
-    font-size: 0px;
     transition: .8s ease;
+  
+    &:hover {
+      box-shadow: $inset-white-box-shadow;
+      transition: .8s ease;
+    }
+  
+    &:focus {
+      box-shadow: $inset-white-box-shadow;
+    }
+  
+    &::placeholder {
+      color: $grey-blue-background-color;
+      font-size: 20px;
+      text-align: right;
+      text-shadow: none;
+    }
+  
+    &:focus::placeholder {
+      font-size: 0px;
+      transition: .8s ease;
+    }
   }
-}
 
-.search-label {
-  color: white;
-}
+  .search-label-area {
+    display: flex;
+    flex-direction: column;
+    border-left: 3px outset $lemon-lime;
+    width: 15%;
+  
+    .search-label {
+      color: white;
+      text-align: center;
+      font-size: 80%;
+    }
 
-.search-btn {
-  border-left: 3px outset $lemon-lime;
-  border-radius: 0px 15px 15px 0px;
-  padding: 1%;
+    @media screen and (max-width: 700px) {
+      width: auto;
+      padding: 5px; 
+    }
+  }
 }
 
 .nav-btn {
@@ -108,11 +161,41 @@ header {
   }
 }
 
-.saved-ingredients-btn {
+.search-tags-btn {
+  display: none;
+
+  @media screen and (max-width: 700px) {
+    display: inline;  
+  }
+}
+
+.saved-ingredients-btn, .search-tags-btn {
   border-left: 3px solid $lemon-lime;
 }
 
 .ing-pan-btn {
   margin: 1% 0%;
   padding: 1px 6px 5px 0px;
+  width: 70px;
+}
+
+.right-nav-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  @media screen and (max-width: 700px) {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+
+    .saved-ingredients-btn {
+      width: 70px;
+    }
+
+    .ing-pan-btn {
+      width: 70px;
+    }
+  }
 }
